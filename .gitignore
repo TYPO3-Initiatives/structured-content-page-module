@@ -1,0 +1,10 @@
+/.idea
+
+# composer
+/vendor/
+/composer.lock
+
+# dev
+/.typo3/
+/Tests/.phpunit.result.cache
+/.php_cs.cache
