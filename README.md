@@ -7,7 +7,9 @@
 
 ## Introduction
 packagist: typo3-pagemodule/page
+
 extension key: page
+
 autoload: \TYPO3\CMS\Page\
 
 ### Status
