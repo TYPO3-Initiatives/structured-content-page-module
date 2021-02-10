@@ -34,11 +34,11 @@ It includes example Content Blocks in a local composer repository that are insta
 ### For using Content Blocks
 
 #### Requirements
-* TYPO3 v10+
+* TYPO3 v11+
 
 #### Installation steps
 <pre>
-composer req for packagist: "name": "typo3-pagemodule/pagemodule",
+composer req for packagist: "name": "typo3-pagemodule/pagemodule:dev-main",
 </pre>
 
 * Activate the extension `pagemodule`
