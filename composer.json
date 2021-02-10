@@ -1,0 +1,139 @@
+{
+    "name": "typo3-pagemodule/page",
+    "type": "typo3-cms-extension",
+    "description": "new page module for TYPO3 of the Strucutred Content Initiative ",
+    "keywords": [
+        "typo3"
+    ],
+    "license": [
+        "GPL-2.0-or-later"
+    ],
+    "authors": [
+        {
+            "name": "Structured Content Initiative"
+        }
+    ],
+    "require": {
+        "typo3/cms-core": "^11.0.0 || dev-master"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "helhum/typo3-console": "^6.3",
+        "roave/security-advisories": "dev-master",
+        "typo3/cms-about": "^11.0.0 || dev-master",
+        "typo3/cms-adminpanel": "^11.0.0 || dev-master",
+        "typo3/cms-backend": "^11.0.0 || dev-master",
+        "typo3/cms-belog": "^11.0.0 || dev-master",
+        "typo3/cms-beuser": "^11.0.0 || dev-master",
+        "typo3/cms-dashboard": "^11.0.0 || dev-master",
+        "typo3/cms-extbase": "^11.0.0 || dev-master",
+        "typo3/cms-extensionmanager": "^11.0.0 || dev-master",
+        "typo3/cms-felogin": "^11.0.0 || dev-master",
+        "typo3/cms-filemetadata": "^11.0.0 || dev-master",
+        "typo3/cms-filelist": "^11.0.0 || dev-master",
+        "typo3/cms-fluid": "^11.0.0 || dev-master",
+        "typo3/cms-fluid-styled-content": "^11.0.0 || dev-master",
+        "typo3/cms-form": "^11.0.0 || dev-master",
+        "typo3/cms-frontend": "^11.0.0 || dev-master",
+        "typo3/cms-impexp": "^11.0.0 || dev-master",
+        "typo3/cms-indexed-search": "^11.0.0 || dev-master",
+        "typo3/cms-info": "^11.0.0 || dev-master",
+        "typo3/cms-install": "^11.0.0 || dev-master",
+        "typo3/cms-linkvalidator": "^11.0.0 || dev-master",
+        "typo3/cms-lowlevel": "^11.0.0 || dev-master",
+        "typo3/cms-opendocs": "^11.0.0 || dev-master",
+        "typo3/cms-recordlist": "^11.0.0 || dev-master",
+        "typo3/cms-recycler": "^11.0.0 || dev-master",
+        "typo3/cms-redirects": "^11.0.0 || dev-master",
+        "typo3/cms-reports": "^11.0.0 || dev-master",
+        "typo3/cms-rte-ckeditor": "^11.0.0 || dev-master",
+        "typo3/cms-scheduler": "^11.0.0 || dev-master",
+        "typo3/cms-seo": "^11.0.0 || dev-master",
+        "typo3/cms-setup": "^11.0.0 || dev-master",
+        "typo3/cms-sys-note": "^11.0.0 || dev-master",
+        "typo3/cms-t3editor": "^11.0.0 || dev-master",
+        "typo3/cms-tstemplate": "^11.0.0 || dev-master",
+        "typo3/cms-viewpage": "^11.0.0 || dev-master",
+        "typo3/cms-workspaces": "^11.0.0 || dev-master",
+        "typo3/testing-framework": "^6.4"
+    },
+    "config": {
+        "bin-dir": ".typo3/bin",
+        "sort-packages": true,
+        "vendor-dir": ".typo3/vendor"
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "page",
+            "web-dir": ".typo3/public",
+            "app-dir": ".typo3"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "TYPO3\\CMS\\Page\\": "Classes/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TYPO3\\CMS\\Page\\": "Tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "post-autoload-dump": [
+            "[ -L .typo3/public/typo3conf/ext/page ] || ( mkdir -p .typo3/public/typo3conf/ext/ && ln -snvf ../../../../. .typo3/public/typo3conf/ext/page )"
+        ],
+        "fix-staged:cgl:php-cs": [
+            "php-cs-fixer --config=.php_cs.dist fix -v --using-cache=no `git diff --cached --name-only '*.php'`"
+        ],
+        "fix:cgl": [
+            "@fix:cgl:php-cs"
+        ],
+        "fix:cgl:php-cs": [
+            "php-cs-fixer --config=.php_cs.dist fix --using-cache=no"
+        ],
+        "install-extensions": [
+            "typo3 extension:activate -n page",
+            "typo3cms database:updateschema"
+        ],
+        "install-typo3": [
+            "typo3cms install:setup --admin-user-name=admin --admin-password=adminadmin --site-setup-type=site --site-name='New Page Module' --no-interaction",
+            "typo3cms install:generatepackagestates"
+        ],
+        "test": [
+            "@test:cgl",
+            "@test:unit"
+        ],
+        "test-staged": [
+            "@test-staged:cgl",
+            "@test:unit"
+        ],
+        "test-staged:cgl": [
+            "@test-staged:cgl:php-cs"
+        ],
+        "test-staged:cgl:php-cs": [
+            "if [ `git diff --cached --name-only '*.php' | wc -l` -ne 0 ]; then php-cs-fixer --config=.php_cs.dist fix -v --diff --diff-format=udiff --dry-run `git diff --cached --name-only --relative '*.php'`; else true; fi"
+        ],
+        "test:cgl": [
+            "@test:cgl:php-cs"
+        ],
+        "test:cgl:php-cs": [
+            "php-cs-fixer --config=.php_cs.dist fix -v --dry-run"
+        ],
+        "test:unit": [
+            "phpunit -c Tests/UnitTests.phpunit.xml"
+        ],
+        "tests-for:ci": [
+            "@test"
+        ],
+        "typo3:flush": [
+            "typo3cms cache:flush"
+        ]
+    },
+    "support": {
+        "issues": "https://github.com/TYPO3-Initiatives/structured-content-page-module/issues",
+        "source": "https://github.com/TYPO3-Initiatives/structured-content-page-module"
+    }
+}
