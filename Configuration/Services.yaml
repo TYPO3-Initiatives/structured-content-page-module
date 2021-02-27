@@ -1,0 +1,11 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  TYPO3\CMS\Page\:
+    resource: '../Classes/*'
+
+  TYPO3\CMS\Page\Controller\ModuleController:
+    tags: ['backend.controller']
