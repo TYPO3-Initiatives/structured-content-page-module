@@ -1,0 +1,39 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "scripthost",
+            "es2017",
+            "es2018",
+            "es2019"
+        ],
+        "esModuleInterop": true,
+        "incremental": true,
+        "tsBuildInfoFile": "./.cache/tsconfig.tsbuildinfo",
+        "module": "amd",
+        "moduleResolution": "node",
+        "sourceMap": false,
+        "removeComments": false,
+        "alwaysStrict": true,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "pretty": true,
+        "baseUrl": "Sources/TypeScript",
+        "paths": {
+            "TYPO3/CMS/Page/*": [
+                "../Resources/Public/JavaScript",
+                "../Resources/Public/TypeScript"
+            ]
+        },
+        "outDir": "./JavaScript/",
+        "typeRoots": [
+            "node_modules/@types",
+            "types"
+        ]
+    }
+}

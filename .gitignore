@@ -4,6 +4,15 @@
 /vendor/
 /composer.lock
 
+# Build
+/Build/node_modules/
+/Build/.cache/
+/Build/JavaScript/
+
+# Build results
+/Resources/Public/Css/
+/Resources/Public/JavaScript/
+
 # dev
 /.typo3/
 /Tests/.phpunit.result.cache
