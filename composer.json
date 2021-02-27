@@ -51,11 +51,12 @@
         "typo3/cms-seo": "^11.0.0 || dev-master",
         "typo3/cms-setup": "^11.0.0 || dev-master",
         "typo3/cms-sys-note": "^11.0.0 || dev-master",
+        "typo3/cms-styleguide": "^11.0.0 || dev-master",
         "typo3/cms-t3editor": "^11.0.0 || dev-master",
         "typo3/cms-tstemplate": "^11.0.0 || dev-master",
         "typo3/cms-viewpage": "^11.0.0 || dev-master",
         "typo3/cms-workspaces": "^11.0.0 || dev-master",
-        "typo3/testing-framework": "^6.4"
+        "typo3/testing-framework": "^6.6.0"
     },
     "config": {
         "bin-dir": ".typo3/bin",
@@ -76,7 +77,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "TYPO3\\CMS\\Page\\": "Tests/"
+            "TYPO3\\CMS\\Page\\Tests\\": "Tests/"
         }
     },
     "minimum-stability": "dev",
