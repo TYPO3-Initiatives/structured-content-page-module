@@ -8,13 +8,12 @@ router_https_port: "443"
 xdebug_enabled: false
 additional_hostnames: []
 additional_fqdns: []
-mariadb_version: "10.2"
+mariadb_version: "10.5"
 mysql_version: ""
 provider: default
 hooks:
   post-start:
-  - exec: sudo composer self-update --2
-  - composer: install
+  - composer: update
   - exec: rm composer.lock
   - exec: |
       if [[ $(mysql -e "SHOW TABLES" | wc -l) -eq 0 ]]; then
