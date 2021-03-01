@@ -26,14 +26,22 @@
         "baseUrl": "Sources/TypeScript",
         "paths": {
             "TYPO3/CMS/Page/*": [
-                "../Resources/Public/JavaScript",
-                "../Resources/Public/TypeScript"
+                "page/Resources/Public/TypeScript/*"
+            ],
+            "TYPO3/CMS/Backend/*": [
+                "../../lib/TypeScript/backend/Resources/Public/TypeScript/*"
+            ],
+            "TYPO3/CMS/Core/*": [
+                "../../lib/TypeScript/core/Resources/Public/TypeScript/*"
             ]
         },
         "outDir": "./JavaScript/",
+//		"types": [
+//			"bootstrap"
+//		],
         "typeRoots": [
             "node_modules/@types",
-            "types"
+//            "types"
         ]
     }
 }

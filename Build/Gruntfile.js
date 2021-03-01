@@ -192,72 +192,6 @@ module.exports = function (grunt) {
         cache: './.cache/grunt-newer/'
       }
     },
-    rollup: {
-      options: {
-        format: 'amd',
-        onwarn: function(warning) {
-          if (warning.code === 'THIS_IS_UNDEFINED' && grunt.file.match('*/lit-html/directives/async-*.js')) {
-            // lit-html's Symbol.asyncIterator polyfill in async-{append/replace}.js contains
-            // a global check for `this`: `(this && this.__asyncValues) || function (o) {`.
-            // rollup will rewrite that to `function (o) {` and warn about rewriting `this`.
-            // The rewrite is perfectly ok, the AMD module will act as a singleton, so no
-            // global window object is needed here. The warning is therefore silenced.
-            return;
-          }
-          console.warn( warning.message );
-        }
-      },
-      'lit-html': {
-        options: {
-          preserveModules: true,
-          plugins: () => [
-            {
-              name: 'terser',
-              renderChunk: code => require('terser').minify(code, grunt.config.get('terser.options'))
-            }
-          ]
-        },
-        files: {
-          '<%= paths.core %>Public/JavaScript/Contrib/lit-html': [
-            'node_modules/lit-html/lit-html.js',
-            'node_modules/lit-html/directives/*.js',
-            'node_modules/lit-html/lib/*.js',
-            // omitted, empty
-            '!node_modules/lit-html/lib/render-options.js',
-            '!node_modules/lit-html/lib/template-processor.js',
-          ]
-        }
-      },
-      'lit-element': {
-        options: {
-          preserveModules: true,
-          plugins: () => [
-            {
-              name: 'terser',
-              renderChunk: code => require('terser').minify(code, grunt.config.get('terser.options'))
-            },
-            {
-              name: 'externals',
-              resolveId: (source) => {
-                if (source === 'lit-html/lit-html.js') {
-                  return {id: 'lit-html', external: true}
-                }
-                if (source === 'lit-html/lib/shady-render.js') {
-                  return {id: 'lit-html/lib/shady-render', external: true}
-                }
-                return null
-              }
-            }
-          ]
-        },
-        files: {
-          '<%= paths.core %>Public/JavaScript/Contrib/lit-element': [
-            'node_modules/lit-element/lit-element.js',
-            'node_modules/lit-element/lib/*.js',
-          ]
-        }
-      },
-    },
     terser: {
       options: {
         output: {
@@ -367,7 +301,7 @@ module.exports = function (grunt) {
    * - yarn install
    * - copy some components to a specific destinations because they need to be included via PHP
    */
-  grunt.registerTask('update', ['exec:yarn-install', 'rollup']);
+  grunt.registerTask('update', ['exec:yarn-install']);
 
   /**
    * grunt compile-typescript task
@@ -378,7 +312,7 @@ module.exports = function (grunt) {
    * - 1) Check all TypeScript files (*.ts) with ESLint which are located in sysext/<EXTKEY>/Resources/Private/TypeScript/*.ts
    * - 2) Compiles all TypeScript files (*.ts) which are located in sysext/<EXTKEY>/Resources/Private/TypeScript/*.ts
    */
-  grunt.registerTask('compile-typescript', ['tsconfig', 'eslint', 'exec:ts']);
+  grunt.registerTask('compile-typescript', ['eslint', 'exec:ts']);
 
   /**
    * grunt scripts task
@@ -403,31 +337,6 @@ module.exports = function (grunt) {
     grunt.option('force');
     grunt.file.delete('.cache');
     grunt.file.delete('JavaScript');
-  });
-
-  /**
-   * grunt tsconfig task
-   *
-   * call "$ grunt tsconfig"
-   *
-   * this task updates the tsconfig.json file with modules paths for all sysexts
-   */
-  grunt.task.registerTask('tsconfig', function () {
-    var config = grunt.file.readJSON("tsconfig.json");
-    config.compilerOptions.paths = {};
-    var sysext = grunt.config.get('paths.sysext');
-    grunt.file.expand(sysext + '*/Resources/Public/JavaScript').forEach(function (dir) {
-      var extname = ('_' + dir.match(/sysext\/(.*?)\//)[1]).replace(/_./g, function (match) {
-        return match.charAt(1).toUpperCase();
-      });
-      var namespace = 'TYPO3/CMS/' + extname + '/*';
-      var path = dir + "/*";
-      var extensionTypeScriptPath = path.replace('Public/JavaScript', 'Public/TypeScript').replace(sysext, '');
-      config.compilerOptions.paths[namespace] = [path, extensionTypeScriptPath];
-    });
-    config.compilerOptions.paths['TYPO3/CMS/Page/*'] = ['../Resources/Public/JavaScript', '../Resources/Public/TypeScript'];
-
-    grunt.file.write('tsconfig.json', JSON.stringify(config, null, 4));
   });
 
   /**
