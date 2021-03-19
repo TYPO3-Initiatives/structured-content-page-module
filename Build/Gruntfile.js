@@ -277,6 +277,11 @@ module.exports = function (grunt) {
           }
         ]
       },
+      /**
+       * Disable copying of module icons from the icons repository
+       * to use local edited icons
+       * Unfortunately it's not possible to change them in the icons repository
+       * directly without affecting TYPO3 10.4 LTS
       module_icons: {
         files: [
           {
@@ -405,6 +410,7 @@ module.exports = function (grunt) {
           }
         ]
       },
+       */
       extension_icons: {
         files: [
           {
