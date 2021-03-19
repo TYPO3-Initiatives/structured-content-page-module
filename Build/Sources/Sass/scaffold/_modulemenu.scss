@@ -51,17 +51,36 @@
         color: $scaffold-modulemenu-color-inverted;
         background-color: $scaffold-modulemenu-bg-inverted;
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+
+        .modulemenu-icon {
+            svg {
+                -webkit-filter: invert(100%); /* safari 6.0 - 9.0 */
+                filter: invert(100%);
+            }
+        }
     }
 
     &:not(:disabled):hover {
         color: $scaffold-modulemenu-color-inverted;
         background-color: $scaffold-modulemenu-bg-inverted;
+
+        .modulemenu-icon {
+            svg {
+                filter: invert(100%);
+            }
+        }
     }
 
     &.modulemenu-action-active {
         color: $scaffold-modulemenu-color-inverted;
         background-color: $scaffold-modulemenu-bg-inverted;
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+
+        .modulemenu-icon {
+            svg {
+                filter: invert(100%);
+            }
+        }
     }
 }
 
