@@ -61,13 +61,15 @@
         {f:if(condition: module.navigationFrameScriptParameters, then: 'data-navigationframescriptparameters="{module.navigationFrameScriptParameters}"')}
         {f:if(condition: showChildren, then: 'aria-haspopup="true" aria-expanded="{f:if(condition: module.collapsed, then: \'false\', else: \'true\')}"')}
     >
-        <span class="modulemenu-icon" aria-hidden="true"><f:format.raw>{module.icon}</f:format.raw></span>
-        <span class="modulemenu-name">
-            <f:if condition="{showChildren}">
-                <f:then>{module.title -> f:format.case(mode: 'upper')}</f:then>
-                <f:else>{module.title}</f:else>
-            </f:if>
-        </span>
+        <f:if condition="{showChildren}">
+            <f:then>
+                <span class="modulemenu-name"><f:format.case mode="upper">{module.title}</f:format.case></span>
+            </f:then>
+            <f:else>
+                <span class="modulemenu-icon" aria-hidden="true"><f:format.raw>{module.icon}</f:format.raw></span>
+                <span class="modulemenu-name">{module.title}</span>
+            </f:else>
+        </f:if>
         <span class="modulemenu-indicator" aria-hidden="true"></span>
     </button>
 </f:section>
