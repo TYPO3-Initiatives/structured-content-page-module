@@ -180,9 +180,27 @@ button[aria-expanded="true"]:not(:disabled) {
 }
 
 //
+// Model menu group
+//
+.t3js-modulemenu-collapsible {
+    .modulemenu-icon {
+        svg {
+            filter: invert(0);
+        }
+    }
+}
+
+//
 // Scaffold
 //
 .scaffold-modulemenu-expanded {
+    // Hide module group icon
+    .t3js-modulemenu-collapsible {
+        .modulemenu-icon {
+            display: none;
+        }
+    }
+
     .modulemenu-action {
         margin-left: 0;
     }
