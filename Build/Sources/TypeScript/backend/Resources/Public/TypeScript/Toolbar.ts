@@ -33,11 +33,6 @@ class Toolbar {
 
     new RegularEvent('click', (): void => {
       const scaffold = document.querySelector('.scaffold');
-      scaffold.classList.toggle('scaffold-modulemenu-expanded');
-    }).bindTo(document.querySelector('.scaffold-modulemenu .t3js-topbar-button-modulemenu'));
-
-    new RegularEvent('click', (): void => {
-      const scaffold = document.querySelector('.scaffold');
       scaffold.classList.remove('scaffold-modulemenu-expanded', 'scaffold-toolbar-expanded');
       scaffold.classList.toggle('scaffold-search-expanded');
     }).bindTo(document.querySelector('.t3js-topbar-button-search'))
