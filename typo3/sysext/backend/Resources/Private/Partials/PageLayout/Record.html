@@ -2,35 +2,76 @@
 
 <f:be.pageRenderer includeRequireJsModules="{0: 'TYPO3/CMS/Backend/Element/ContentElement'}" />
 
-<typo3-backend-content-element
-    header="test"
-    content="{item.preview}"
-    ></typo3-backend-content-element>
+<f:section name="header">
+    <f:render partial="PageLayout/Record/{item.record.CType}/Header" arguments="{_all}" optional="1">
+        <f:render partial="PageLayout/Record/Header" arguments="{_all}" />
+    </f:render>
+</f:section>
+<f:section name="content">
+    <f:render partial="PageLayout/Record/Preview" arguments="{_all}" />
+</f:section>
+<f:section name="footer">
+    <f:render partial="PageLayout/Record/{item.record.CType}/Footer" arguments="{_all}" optional="1">
+        <f:render partial="PageLayout/Record/Footer" arguments="{_all}" />
+    </f:render>
+</f:section>
 
-<div class="t3-page-ce {item.wrapperClassName} t3js-page-ce t3js-page-ce-sortable" id="element-tt_content-{item.record.uid}" data-table="tt_content" data-uid="{item.record.uid}" data-language-uid="{item.record.sys_language_uid}" style="{style}">
-    <div class="t3-page-ce-dragitem" id="{item.uniqueId}">
-        <f:render partial="PageLayout/Record/{item.record.CType}/Header" arguments="{_all}" optional="1">
-            <f:render partial="PageLayout/Record/Header" arguments="{_all}" />
-        </f:render>
-        <div class="t3-page-ce-body">
-            <div class="t3-page-ce-body-inner">
-                <div class="{f:if(condition: item.versioned, then: 'ver-element')}">
-                    <f:render partial="PageLayout/Record/Preview" arguments="{_all}" />
-                </div>
-            </div>
-            <f:render partial="PageLayout/Record/{item.record.CType}/Footer" arguments="{_all}" optional="1">
-                <f:render partial="PageLayout/Record/Footer" arguments="{_all}" />
-            </f:render>
-        </div>
+<typo3-backend-content-element
+    header="{f:render(section: 'header', arguments: _all) -> f:format.json()}"
+    content="{f:render(section: 'content', arguments: _all) -> f:format.json()}"
+    footer="{f:render(section: 'footer', arguments: _all) -> f:format.json()}"
+    wrapper-class-name="{item.wrapperClassName}"
+    actions="[]"
+    table="tt_content"
+    record="{item.record -> f:format.json()}"
+    uid="{item.record.uid}"
+    unique-id="{item.uniqueId}"
+    language-uid="{item.record.sys_language_uid}"
+    {f:if(condition: item.disabled, then: 'disabled="disabled"')}
+    {f:if(condition: '{item.disabled} && {item.context.drawingConfiguration.showHidden} == 0', else: 'show')}
+    {f:if(condition: item.versioned, then: 'versioned')}
+>
+</typo3-backend-content-element>
+
+<!-- TODO: new content -->
+<f:if condition="{allowEditContent} && {item.column.contentEditable} && {item.column.context.allowNewContent}">
+    <div class="t3js-page-new-ce t3-page-ce-wrapper-new-ce"
+        id="colpos-{item.column.columnNumber}-page-{item.context.pageId}-{item.column.uniqueId}">
+        <a href="{item.newContentAfterUrl}" title="{item.newContentAfterLinkTitle}"
+            data-title="{item.newContentAfterLinkTitle}"
+            class="btn btn-default btn-sm {f:if(condition:item.column.context.drawingConfiguration.showNewContentWizard, then: 't3js-toggle-new-content-element-wizard disabled')}">
+            <core:icon identifier="actions-add"/>
+            {item.newContentAfterTitle}
+        </a>
     </div>
-    <f:if condition="{allowEditContent} && {item.column.contentEditable} && {item.column.context.allowNewContent}">
-        <div class="t3js-page-new-ce t3-page-ce-wrapper-new-ce" id="colpos-{item.column.columnNumber}-page-{item.context.pageId}-{item.column.uniqueId}">
-            <a href="{item.newContentAfterUrl}" title="{item.newContentAfterLinkTitle}" data-title="{item.newContentAfterLinkTitle}"
-                class="btn btn-default btn-sm {f:if(condition:item.column.context.drawingConfiguration.showNewContentWizard, then: 't3js-toggle-new-content-element-wizard disabled')}">
-                <core:icon identifier="actions-add" />
-                {item.newContentAfterTitle}
-            </a>
-        </div>
-    </f:if>
-    <div class="t3-page-ce-dropzone-available t3js-page-ce-dropzone-available"></div>
-</div>
+</f:if>
+<div class="t3-page-ce-dropzone-available t3js-page-ce-dropzone-available"></div>
+
+<!-- TODO: old school: -->
+<!--<div class="t3-page-ce {item.wrapperClassName} t3js-page-ce t3js-page-ce-sortable" id="element-tt_content-{item.record.uid}" data-table="tt_content" data-uid="{item.record.uid}" data-language-uid="{item.record.sys_language_uid}" style="{style}">-->
+<!--    <div class="t3-page-ce-dragitem" id="{item.uniqueId}">-->
+<!--        <f:render partial="PageLayout/Record/{item.record.CType}/Header" arguments="{_all}" optional="1">-->
+<!--            <f:render partial="PageLayout/Record/Header" arguments="{_all}" />-->
+<!--        </f:render>-->
+<!--        <div class="t3-page-ce-body">-->
+<!--            <div class="t3-page-ce-body-inner">-->
+<!--                <div class="{f:if(condition: item.versioned, then: 'ver-element')}">-->
+<!--                    <f:render partial="PageLayout/Record/Preview" arguments="{_all}" />-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <f:render partial="PageLayout/Record/{item.record.CType}/Footer" arguments="{_all}" optional="1">-->
+<!--                <f:render partial="PageLayout/Record/Footer" arguments="{_all}" />-->
+<!--            </f:render>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <f:if condition="{allowEditContent} && {item.column.contentEditable} && {item.column.context.allowNewContent}">-->
+<!--        <div class="t3js-page-new-ce t3-page-ce-wrapper-new-ce" id="colpos-{item.column.columnNumber}-page-{item.context.pageId}-{item.column.uniqueId}">-->
+<!--            <a href="{item.newContentAfterUrl}" title="{item.newContentAfterLinkTitle}" data-title="{item.newContentAfterLinkTitle}"-->
+<!--                class="btn btn-default btn-sm {f:if(condition:item.column.context.drawingConfiguration.showNewContentWizard, then: 't3js-toggle-new-content-element-wizard disabled')}">-->
+<!--                <core:icon identifier="actions-add" />-->
+<!--                {item.newContentAfterTitle}-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </f:if>-->
+<!--    <div class="t3-page-ce-dropzone-available t3js-page-ce-dropzone-available"></div>-->
+<!--</div>-->
