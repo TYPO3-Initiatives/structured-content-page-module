@@ -29,7 +29,12 @@ class Toolbar {
       const scaffold = document.querySelector('.scaffold');
       scaffold.classList.remove('scaffold-modulemenu-expanded', 'scaffold-search-expanded');
       scaffold.classList.toggle('scaffold-toolbar-expanded');
-    }).bindTo(document.querySelector('.t3js-topbar-button-toolbar'));
+    }).bindTo(document.querySelector('.scaffold-topbar .t3js-topbar-button-toolbar'));
+
+    new RegularEvent('click', (): void => {
+      const scaffold = document.querySelector('.scaffold');
+      scaffold.classList.toggle('scaffold-modulemenu-expanded');
+    }).bindTo(document.querySelector('.scaffold-modulemenu .t3js-topbar-button-modulemenu'));
 
     new RegularEvent('click', (): void => {
       const scaffold = document.querySelector('.scaffold');

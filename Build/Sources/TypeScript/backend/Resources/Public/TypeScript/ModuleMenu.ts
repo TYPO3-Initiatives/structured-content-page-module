@@ -389,7 +389,12 @@ class ModuleMenu {
     new RegularEvent('click', (e: Event): void => {
       e.preventDefault();
       ModuleMenu.toggleMenu();
-    }).bindTo(document.querySelector('.t3js-topbar-button-modulemenu'));
+    }).bindTo(document.querySelector('.scaffold-topbar .t3js-topbar-button-modulemenu'));
+
+    new RegularEvent('click', (e: Event): void => {
+      e.preventDefault();
+      ModuleMenu.toggleMenu();
+    }).bindTo(document.querySelector('.scaffold-modulemenu  .t3js-topbar-button-modulemenu'));
 
     new RegularEvent('click', (e: Event): void => {
       e.preventDefault();

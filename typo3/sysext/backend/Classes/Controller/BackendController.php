@@ -201,8 +201,6 @@ class BackendController
         $view->assign('moduleMenu', $this->generateModuleMenu());
         $view->assign('topbar', $this->renderTopbar());
         $view->assign('hasModules', $hasModules);
-        $view->assign('startupModule', $this->getStartupModule($request));
-        $view->assign('stateTracker', (string)$this->uriBuilder->buildUriFromRoute('state-tracker'));
 
         if (!empty($this->css)) {
             $this->pageRenderer->addCssInlineBlock('BackendInlineCSS', $this->css);
@@ -543,7 +541,10 @@ class BackendController
     protected function generateModuleMenu()
     {
         $view = $this->getFluidTemplateObject($this->templatePath . 'ModuleMenu/Main.html');
+        $hasModules = count($this->moduleStorage) > 0;
+        $view->assign('hasModules', $hasModules);
         $view->assign('modules', $this->moduleStorage);
+        // AKBOOK
         return $view->render();
     }
 

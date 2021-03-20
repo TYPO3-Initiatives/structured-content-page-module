@@ -1,5 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-
+<f:render section="ToggleButton" arguments="{icon: 'actions-menu', enabled: 'true', classes: 'topbar-button-modulemenu t3js-topbar-button-modulemenu', title: '{f:translate(key: \'LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:toolbarItems.minMaxModuleMenu\')}'}" />
 <nav
     class="modulemenu t3js-modulemenu"
     data-role="modulemenu"
@@ -72,6 +72,23 @@
         </f:if>
         <span class="modulemenu-indicator" aria-hidden="true"></span>
     </button>
+</f:section>
+
+<f:section name="ToggleButton">
+    <f:variable name="disabled" value="{f:if(condition: '!{enabled}', then: 1, else: 0)}" />
+    <f:variable name="disabledAttr" value="{f:if(condition: '{disabled}', then: 'disabled')}" />
+
+    <button {disabledAttr} class="topbar-button {classes}" title="{title}" aria-label="{title}">
+        <core:icon identifier="actions-caret-left" alternativeMarkupIdentifier="inline" />
+        <f:render section="Icon" arguments="{identifier: icon, disabled: disabled}" />
+        <core:icon identifier="actions-caret-right" alternativeMarkupIdentifier="inline" />
+    </button>
+</f:section>
+
+<f:section name="Icon">
+    <f:variable name="overlay" value="{f:if(condition: '{disabled}', then: 'overlay-readonly', else: null)}" />
+
+    <core:icon identifier="{identifier}" alternativeMarkupIdentifier="inline" overlay="{overlay}" />
 </f:section>
 
 </html>
