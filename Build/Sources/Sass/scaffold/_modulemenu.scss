@@ -47,20 +47,24 @@
         outline: none;
     }
 
-    &:not(:disabled):focus {
-        color: $scaffold-modulemenu-color-inverted;
-        background-color: $scaffold-modulemenu-bg-inverted;
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
-    }
-
-    &:not(:disabled):hover {
-        color: $scaffold-modulemenu-color-inverted;
-        background-color: $scaffold-modulemenu-bg-inverted;
-    }
-
+    &:not(:disabled):focus,
+    &:not(:disabled):hover,
     &.modulemenu-action-active {
         color: $scaffold-modulemenu-color-inverted;
         background-color: $scaffold-modulemenu-bg-inverted;
+
+        .modulemenu-icon {
+            svg {
+                filter: invert(0);
+            }
+        }
+    }
+
+    &:not(:disabled):focus {
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+    }
+
+    &.modulemenu-action-active {
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
     }
 }
@@ -76,6 +80,10 @@
     border-radius: 2px;
     flex-shrink: 0;
     overflow: hidden;
+
+    svg {
+        filter: invert(100%);
+    }
 }
 
 //
