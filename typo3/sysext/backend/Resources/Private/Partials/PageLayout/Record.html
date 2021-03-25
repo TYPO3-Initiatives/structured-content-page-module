@@ -27,9 +27,9 @@
     uid="{item.record.uid}"
     unique-id="{item.uniqueId}"
     language-uid="{item.record.sys_language_uid}"
-    {f:if(condition: item.disabled, then: 'disabled="disabled"')}
-    {f:if(condition: '{item.disabled} && {item.context.drawingConfiguration.showHidden} == 0', else: 'show')}
-    {f:if(condition: item.versioned, then: 'versioned')}
+    {item.disabled? 'disabled': ''}
+    {!item.disabled || item.context.drawingConfiguration.showHidden? 'show': ''}
+    {item.versioned? 'versioned': '')}
 >
 </typo3-backend-content-element>
 

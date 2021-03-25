@@ -12,6 +12,8 @@
  */
 
 import {html, css, customElement, property, LitElement, TemplateResult, CSSResult} from 'lit-element';
+import {styleMap} from 'lit-html/directives/style-map.js';
+import {classMap} from 'lit-html/directives/class-map.js';
 import {unsafeHTML} from 'lit-html/directives/unsafe-html';
 import 'TYPO3/CMS/Backend/Element/IconElement';
 
@@ -60,13 +62,18 @@ export class ContentElement extends LitElement {
   }
 
   public render(): TemplateResult {
+    const styles = {
+      display: this.show? 'block': 'none'
+    }
+
     // <typo3-backend-icon @click=${() => this.dispatchEvent(new CustomEvent('content-element:add'))}
     //   identifier="actions-add" size="small"></typo3-backend-icon>
     // </div>
     return html`
       <div class="t3-page-ce ${this.wrapperClassName} t3js-page-ce t3js-page-ce-sortable"
         id="element-tt_content-${this.uid}" data-table="tt_content" data-uid="${this.uid}"
-        data-language-uid="${this.languageUid}" style="${this.show? '': 'display: none'}">
+        data-language-uid="${this.languageUid}" style=$(styleMap(styles)
+      >
         <div class="t3-page-ce-dragitem" id="${this.uniqueId}">
           ${unsafeHTML(JSON.parse(this.header))}
           <div class="t3-page-ce-body">
