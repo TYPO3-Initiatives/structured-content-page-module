@@ -10,21 +10,21 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
-var __decorate=this&&this.__decorate||function(e,t,r,o){var p,a=arguments.length,i=a<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)i=Reflect.decorate(e,t,r,o);else for(var d=e.length-1;d>=0;d--)(p=e[d])&&(i=(a<3?p(i):a>3?p(t,r,i):p(t,r))||i);return a>3&&i&&Object.defineProperty(t,r,i),i};define(["require","exports","lit-element","lit-html/directives/unsafe-html","TYPO3/CMS/Backend/Element/IconElement"],(function(e,t,r,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ContentElement=void 0;let p=class extends r.LitElement{createRenderRoot(){return this}render(){this.show;return r.html`
+var __decorate=this&&this.__decorate||function(e,t,r,o){var a,i=arguments.length,p=i<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)p=Reflect.decorate(e,t,r,o);else for(var d=e.length-1;d>=0;d--)(a=e[d])&&(p=(i<3?a(p):i>3?a(t,r,p):a(t,r))||p);return i>3&&p&&Object.defineProperty(t,r,p),p};define(["require","exports","lit-element","lit-html/directives/style-map","lit-html/directives/unsafe-html","TYPO3/CMS/Backend/Element/IconElement"],(function(e,t,r,o,a){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ContentElement=void 0;let i=class extends r.LitElement{createRenderRoot(){return this}render(){const e={display:this.show?"block":"none"};return r.html`
       <div class="t3-page-ce ${this.wrapperClassName} t3js-page-ce t3js-page-ce-sortable"
         id="element-tt_content-${this.uid}" data-table="tt_content" data-uid="${this.uid}"
-        data-language-uid="${this.languageUid}" style=$(styleMap(styles)
+        data-language-uid="${this.languageUid}" style=${o.styleMap(e)}
       >
         <div class="t3-page-ce-dragitem" id="${this.uniqueId}">
-          ${o.unsafeHTML(JSON.parse(this.header))}
+          ${a.unsafeHTML(JSON.parse(this.header))}
           <div class="t3-page-ce-body">
             <div class="t3-page-ce-body-inner">
               <div class="${this.versioned?"ver-element":""}">
-                ${o.unsafeHTML(JSON.parse(this.content))}
+                ${a.unsafeHTML(this.innerHTML)}
               </div>
             </div>
-            ${o.unsafeHTML(JSON.parse(this.footer))}
+            ${a.unsafeHTML(JSON.parse(this.footer))}
           </div>
         </div>
       </div>
-    `}};__decorate([r.property({type:String})],p.prototype,"header",void 0),__decorate([r.property({type:String})],p.prototype,"content",void 0),__decorate([r.property({type:String})],p.prototype,"footer",void 0),__decorate([r.property({type:Array})],p.prototype,"actions",void 0),__decorate([r.property({type:String,attribute:"wrapper-class-name"})],p.prototype,"wrapperClassName",void 0),__decorate([r.property({type:String})],p.prototype,"table",void 0),__decorate([r.property({type:Number})],p.prototype,"uid",void 0),__decorate([r.property({type:Number,attribute:"language-uid"})],p.prototype,"languageUid",void 0),__decorate([r.property({type:Number,attribute:"unique-uid"})],p.prototype,"uniqueId",void 0),__decorate([r.property({type:Boolean})],p.prototype,"disabled",void 0),__decorate([r.property({type:Boolean})],p.prototype,"show",void 0),__decorate([r.property({type:Boolean})],p.prototype,"versioned",void 0),p=__decorate([r.customElement("typo3-backend-content-element")],p),t.ContentElement=p}));
+    `}};__decorate([r.property({type:String})],i.prototype,"header",void 0),__decorate([r.property({type:String})],i.prototype,"footer",void 0),__decorate([r.property({type:Array})],i.prototype,"actions",void 0),__decorate([r.property({type:String,attribute:"wrapper-class-name"})],i.prototype,"wrapperClassName",void 0),__decorate([r.property({type:String})],i.prototype,"table",void 0),__decorate([r.property({type:Number})],i.prototype,"uid",void 0),__decorate([r.property({type:Number,attribute:"language-uid"})],i.prototype,"languageUid",void 0),__decorate([r.property({type:Number,attribute:"unique-uid"})],i.prototype,"uniqueId",void 0),__decorate([r.property({type:Boolean})],i.prototype,"disabled",void 0),__decorate([r.property({type:Boolean})],i.prototype,"show",void 0),__decorate([r.property({type:Boolean})],i.prototype,"versioned",void 0),i=__decorate([r.customElement("typo3-backend-content-element")],i),t.ContentElement=i}));

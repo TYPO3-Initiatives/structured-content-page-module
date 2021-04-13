@@ -12,8 +12,8 @@
  */
 
 import {html, css, customElement, property, LitElement, TemplateResult, CSSResult} from 'lit-element';
-import {styleMap} from 'lit-html/directives/style-map.js';
-import {classMap} from 'lit-html/directives/class-map.js';
+import {styleMap} from 'lit-html/directives/style-map';
+import {classMap} from 'lit-html/directives/class-map';
 import {unsafeHTML} from 'lit-html/directives/unsafe-html';
 import 'TYPO3/CMS/Backend/Element/IconElement';
 
@@ -30,7 +30,6 @@ import 'TYPO3/CMS/Backend/Element/IconElement';
 @customElement('typo3-backend-content-element')
 export class ContentElement extends LitElement {
   @property({type: String}) header: string;
-  @property({type: String}) content: string;
   @property({type: String}) footer: string;
   @property({type: Array}) actions: Array<any>;
   @property({type: String, attribute: 'wrapper-class-name'}) wrapperClassName: string;
@@ -57,6 +56,7 @@ export class ContentElement extends LitElement {
   //   `;
   // }
 
+  // disable shadow dom for now
   public createRenderRoot(): HTMLElement | ShadowRoot {
     return this;
   }
@@ -72,14 +72,14 @@ export class ContentElement extends LitElement {
     return html`
       <div class="t3-page-ce ${this.wrapperClassName} t3js-page-ce t3js-page-ce-sortable"
         id="element-tt_content-${this.uid}" data-table="tt_content" data-uid="${this.uid}"
-        data-language-uid="${this.languageUid}" style=$(styleMap(styles)
+        data-language-uid="${this.languageUid}" style=${styleMap(styles)}
       >
         <div class="t3-page-ce-dragitem" id="${this.uniqueId}">
           ${unsafeHTML(JSON.parse(this.header))}
           <div class="t3-page-ce-body">
             <div class="t3-page-ce-body-inner">
               <div class="${this.versioned ? 'ver-element': ''}">
-                ${unsafeHTML(JSON.parse(this.content))}
+                ${unsafeHTML(this.innerHTML)}
               </div>
             </div>
             ${unsafeHTML(JSON.parse(this.footer))}
