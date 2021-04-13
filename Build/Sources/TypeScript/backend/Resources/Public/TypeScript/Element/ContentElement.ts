@@ -16,6 +16,9 @@ import {styleMap} from 'lit-html/directives/style-map';
 import {classMap} from 'lit-html/directives/class-map';
 import {unsafeHTML} from 'lit-html/directives/unsafe-html';
 import 'TYPO3/CMS/Backend/Element/IconElement';
+import {Column} from 'TYPO3/CMS/Backend/LayoutModule/Column';
+import {CEPosition} from 'TYPO3/CMS/Backend/Utility/CEPosition';
+
 
 /**
  * Module: TYPO3/CMS/Backend/Element/ContentElement
@@ -41,6 +44,9 @@ export class ContentElement extends LitElement {
   @property({type: Boolean}) show: string;
   @property({type: Boolean}) versioned: string;
 
+  public column: Column;
+
+
   // public static get styles(): CSSResult
   // {
   //   return css`
@@ -61,6 +67,10 @@ export class ContentElement extends LitElement {
     return this;
   }
 
+  public addNewContentElement(position: CEPosition): void {
+    console.log('addNewContentElement')
+  }
+
   public render(): TemplateResult {
     const styles = {
       display: this.show? 'block': 'none'
@@ -74,6 +84,31 @@ export class ContentElement extends LitElement {
         id="element-tt_content-${this.uid}" data-table="tt_content" data-uid="${this.uid}"
         data-language-uid="${this.languageUid}" style=${styleMap(styles)}
       >
+
+        <button class="btn btn-default btn-borderless t3-page-ce-add-rowabove" style="display:none"
+          @click="${(event: Event) => this._handleAddNewContent(event, CEPosition.RowAbove)}">
+            <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
+        </button>
+        <button class="btn btn-default btn-borderless t3-page-ce-add-above"
+          @click="${(event: Event) => this._handleAddNewContent(event, CEPosition.Above)}">
+          <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
+        </button>
+        <button class="btn btn-default btn-borderless t3-page-ce-add-left"
+          @click="${(event: Event) => this._handleAddNewContent(event, CEPosition.Left)}">
+          <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
+        </button>
+        <button class="btn btn-default btn-borderless t3-page-ce-add-right"
+          @click="${(event: Event) => this._handleAddNewContent(event, CEPosition.Right)}">
+          <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
+        </button>
+        <button class="btn btn-default btn-borderless t3-page-ce-add-below"
+          @click="${(event: Event) => this._handleAddNewContent(event, CEPosition.Below)}">
+          <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
+        </button>
+        <button class="btn btn-default btn-borderless t3-page-ce-add-rowbelow" style="display:none"
+          @click="${(event: Event) => this._handleAddNewContent(event, CEPosition.RowAbove)}">
+          <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
+        </button>
         <div class="t3-page-ce-dragitem" id="${this.uniqueId}">
           ${unsafeHTML(JSON.parse(this.header))}
           <div class="t3-page-ce-body">
@@ -87,5 +122,10 @@ export class ContentElement extends LitElement {
         </div>
       </div>
     `;
+  }
+
+  private _handleAddNewContent(event: Event, position: CEPosition): void {
+    event.preventDefault()
+    alert('_handleAddNewContent: Position=' + position)
   }
 }

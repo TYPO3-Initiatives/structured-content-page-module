@@ -10,21 +10,46 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
-var __decorate=this&&this.__decorate||function(e,t,r,o){var a,i=arguments.length,p=i<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)p=Reflect.decorate(e,t,r,o);else for(var d=e.length-1;d>=0;d--)(a=e[d])&&(p=(i<3?a(p):i>3?a(t,r,p):a(t,r))||p);return i>3&&p&&Object.defineProperty(t,r,p),p};define(["require","exports","lit-element","lit-html/directives/style-map","lit-html/directives/unsafe-html","TYPO3/CMS/Backend/Element/IconElement"],(function(e,t,r,o,a){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ContentElement=void 0;let i=class extends r.LitElement{createRenderRoot(){return this}render(){const e={display:this.show?"block":"none"};return r.html`
+var __decorate=this&&this.__decorate||function(e,t,o,n){var d,i=arguments.length,a=i<3?t:null===n?n=Object.getOwnPropertyDescriptor(t,o):n;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)a=Reflect.decorate(e,t,o,n);else for(var r=e.length-1;r>=0;r--)(d=e[r])&&(a=(i<3?d(a):i>3?d(t,o,a):d(t,o))||a);return i>3&&a&&Object.defineProperty(t,o,a),a};define(["require","exports","lit-element","lit-html/directives/style-map","lit-html/directives/unsafe-html","TYPO3/CMS/Backend/Utility/CEPosition","TYPO3/CMS/Backend/Element/IconElement"],(function(e,t,o,n,d,i){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ContentElement=void 0;let a=class extends o.LitElement{createRenderRoot(){return this}addNewContentElement(e){console.log("addNewContentElement")}render(){const e={display:this.show?"block":"none"};return o.html`
       <div class="t3-page-ce ${this.wrapperClassName} t3js-page-ce t3js-page-ce-sortable"
         id="element-tt_content-${this.uid}" data-table="tt_content" data-uid="${this.uid}"
-        data-language-uid="${this.languageUid}" style=${o.styleMap(e)}
+        data-language-uid="${this.languageUid}" style=${n.styleMap(e)}
       >
+
+        <button class="btn btn-default btn-borderless t3-page-ce-add-rowabove" style="display:none"
+          @click="${e=>this._handleAddNewContent(e,i.CEPosition.RowAbove)}">
+            <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
+        </button>
+        <button class="btn btn-default btn-borderless t3-page-ce-add-above"
+          @click="${e=>this._handleAddNewContent(e,i.CEPosition.Above)}">
+          <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
+        </button>
+        <button class="btn btn-default btn-borderless t3-page-ce-add-left"
+          @click="${e=>this._handleAddNewContent(e,i.CEPosition.Left)}">
+          <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
+        </button>
+        <button class="btn btn-default btn-borderless t3-page-ce-add-right"
+          @click="${e=>this._handleAddNewContent(e,i.CEPosition.Right)}">
+          <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
+        </button>
+        <button class="btn btn-default btn-borderless t3-page-ce-add-below"
+          @click="${e=>this._handleAddNewContent(e,i.CEPosition.Below)}">
+          <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
+        </button>
+        <button class="btn btn-default btn-borderless t3-page-ce-add-rowbelow" style="display:none"
+          @click="${e=>this._handleAddNewContent(e,i.CEPosition.RowAbove)}">
+          <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
+        </button>
         <div class="t3-page-ce-dragitem" id="${this.uniqueId}">
-          ${a.unsafeHTML(JSON.parse(this.header))}
+          ${d.unsafeHTML(JSON.parse(this.header))}
           <div class="t3-page-ce-body">
             <div class="t3-page-ce-body-inner">
               <div class="${this.versioned?"ver-element":""}">
-                ${a.unsafeHTML(this.innerHTML)}
+                ${d.unsafeHTML(this.innerHTML)}
               </div>
             </div>
-            ${a.unsafeHTML(JSON.parse(this.footer))}
+            ${d.unsafeHTML(JSON.parse(this.footer))}
           </div>
         </div>
       </div>
-    `}};__decorate([r.property({type:String})],i.prototype,"header",void 0),__decorate([r.property({type:String})],i.prototype,"footer",void 0),__decorate([r.property({type:Array})],i.prototype,"actions",void 0),__decorate([r.property({type:String,attribute:"wrapper-class-name"})],i.prototype,"wrapperClassName",void 0),__decorate([r.property({type:String})],i.prototype,"table",void 0),__decorate([r.property({type:Number})],i.prototype,"uid",void 0),__decorate([r.property({type:Number,attribute:"language-uid"})],i.prototype,"languageUid",void 0),__decorate([r.property({type:Number,attribute:"unique-uid"})],i.prototype,"uniqueId",void 0),__decorate([r.property({type:Boolean})],i.prototype,"disabled",void 0),__decorate([r.property({type:Boolean})],i.prototype,"show",void 0),__decorate([r.property({type:Boolean})],i.prototype,"versioned",void 0),i=__decorate([r.customElement("typo3-backend-content-element")],i),t.ContentElement=i}));
+    `}_handleAddNewContent(e,t){e.preventDefault(),alert("_handleAddNewContent: Position="+t)}};__decorate([o.property({type:String})],a.prototype,"header",void 0),__decorate([o.property({type:String})],a.prototype,"footer",void 0),__decorate([o.property({type:Array})],a.prototype,"actions",void 0),__decorate([o.property({type:String,attribute:"wrapper-class-name"})],a.prototype,"wrapperClassName",void 0),__decorate([o.property({type:String})],a.prototype,"table",void 0),__decorate([o.property({type:Number})],a.prototype,"uid",void 0),__decorate([o.property({type:Number,attribute:"language-uid"})],a.prototype,"languageUid",void 0),__decorate([o.property({type:Number,attribute:"unique-uid"})],a.prototype,"uniqueId",void 0),__decorate([o.property({type:Boolean})],a.prototype,"disabled",void 0),__decorate([o.property({type:Boolean})],a.prototype,"show",void 0),__decorate([o.property({type:Boolean})],a.prototype,"versioned",void 0),a=__decorate([o.customElement("typo3-backend-content-element")],a),t.ContentElement=a}));
