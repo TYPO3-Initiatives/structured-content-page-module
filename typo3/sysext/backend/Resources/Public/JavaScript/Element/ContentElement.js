@@ -10,10 +10,11 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
-var __decorate=this&&this.__decorate||function(e,t,r,o){var p,a=arguments.length,i=a<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)i=Reflect.decorate(e,t,r,o);else for(var d=e.length-1;d>=0;d--)(p=e[d])&&(i=(a<3?p(i):a>3?p(t,r,i):p(t,r))||i);return a>3&&i&&Object.defineProperty(t,r,i),i};define(["require","exports","lit-element","lit-html/directives/unsafe-html","TYPO3/CMS/Backend/Element/IconElement"],(function(e,t,r,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ContentElement=void 0;let p=class extends r.LitElement{createRenderRoot(){return this}render(){return r.html`
+var __decorate=this&&this.__decorate||function(e,t,r,o){var p,a=arguments.length,i=a<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)i=Reflect.decorate(e,t,r,o);else for(var d=e.length-1;d>=0;d--)(p=e[d])&&(i=(a<3?p(i):a>3?p(t,r,i):p(t,r))||i);return a>3&&i&&Object.defineProperty(t,r,i),i};define(["require","exports","lit-element","lit-html/directives/unsafe-html","TYPO3/CMS/Backend/Element/IconElement"],(function(e,t,r,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ContentElement=void 0;let p=class extends r.LitElement{createRenderRoot(){return this}render(){this.show;return r.html`
       <div class="t3-page-ce ${this.wrapperClassName} t3js-page-ce t3js-page-ce-sortable"
         id="element-tt_content-${this.uid}" data-table="tt_content" data-uid="${this.uid}"
-        data-language-uid="${this.languageUid}" style="${this.show?"":"display: none"}">
+        data-language-uid="${this.languageUid}" style=$(styleMap(styles)
+      >
         <div class="t3-page-ce-dragitem" id="${this.uniqueId}">
           ${o.unsafeHTML(JSON.parse(this.header))}
           <div class="t3-page-ce-body">
