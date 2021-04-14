@@ -55,7 +55,7 @@
 
         .modulemenu-icon {
             svg {
-                filter: invert(0);
+                filter: invert(100%) grayscale(100%);
             }
         }
     }
@@ -82,7 +82,7 @@
     overflow: hidden;
 
     svg {
-        filter: invert(100%);
+        filter: grayscale(100%);
     }
 }
 
