@@ -40,6 +40,7 @@ export class ContentElement extends LitElement {
   @property({type: Number}) uid: string;
   @property({type: Number, attribute: 'language-uid'}) languageUid: string;
   @property({type: Number, attribute: 'unique-uid'}) uniqueId: string;
+  @property({type: String, attribute: 'new-content-url'}) newContentUrl: string;
   @property({type: Boolean}) disabled: string;
   @property({type: Boolean}) show: string;
   @property({type: Boolean}) versioned: string;
@@ -67,18 +68,11 @@ export class ContentElement extends LitElement {
     return this;
   }
 
-  public addNewContentElement(position: CEPosition): void {
-    console.log('addNewContentElement')
-  }
-
   public render(): TemplateResult {
     const styles = {
       display: this.show? 'block': 'none'
     }
 
-    // <typo3-backend-icon @click=${() => this.dispatchEvent(new CustomEvent('content-element:add'))}
-    //   identifier="actions-add" size="small"></typo3-backend-icon>
-    // </div>
     return html`
       <div class="t3-page-ce ${this.wrapperClassName} t3js-page-ce t3js-page-ce-sortable"
         id="element-tt_content-${this.uid}" data-table="tt_content" data-uid="${this.uid}"
@@ -126,6 +120,20 @@ export class ContentElement extends LitElement {
 
   private _handleAddNewContent(event: Event, position: CEPosition): void {
     event.preventDefault()
-    alert('_handleAddNewContent: Position=' + position)
+
+    this.dispatchEvent(
+      new CustomEvent(
+        'content-element:add',
+        {
+          detail: {
+            position: position,
+            contentElementUid: this.uid,
+            newContentUrl: this.newContentUrl
+          },
+          bubbles: true,
+          composed: true
+        }
+      )
+    )
   }
 }
