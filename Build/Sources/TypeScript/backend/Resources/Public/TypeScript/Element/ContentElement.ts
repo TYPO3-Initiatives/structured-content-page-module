@@ -11,7 +11,7 @@
  * The TYPO3 project - inspiring people to share!
  */
 
-import {html, css, customElement, property, LitElement, TemplateResult, CSSResult} from 'lit-element';
+import {html, css, customElement, property, LitElement, TemplateResult, CSSResult, query} from 'lit-element';
 import {styleMap} from 'lit-html/directives/style-map';
 import {classMap} from 'lit-html/directives/class-map';
 import {unsafeHTML} from 'lit-html/directives/unsafe-html';
@@ -34,6 +34,7 @@ import {CEPosition} from 'TYPO3/CMS/Backend/Utility/CEPosition';
 export class ContentElement extends LitElement {
   @property({type: String}) header: string;
   @property({type: String}) footer: string;
+  @property({type: String}) content: string;
   @property({type: Array}) actions: Array<any>;
   @property({type: String, attribute: 'wrapper-class-name'}) wrapperClassName: string;
   @property({type: String}) table: string;
@@ -44,24 +45,18 @@ export class ContentElement extends LitElement {
   @property({type: Boolean}) disabled: string;
   @property({type: Boolean}) show: string;
   @property({type: Boolean}) versioned: string;
+  @property({type: Boolean}) isAddContentModeEnabled: boolean = false;
+
+  @query('[data-t3-ce-toggle-add-content-mode-btn]') toggleAddContentModeBtn: HTMLButtonElement;
 
   public column: Column;
 
+  async firstUpdated() {
+    await new Promise((r) => setTimeout(r, 0));
+    console.log(this.toggleAddContentModeBtn)
 
-  // public static get styles(): CSSResult
-  // {
-  //   return css`
-  //     :host {
-  //       display: block;
-  //       border: 1px solid var(--typo3-border-color);
-  //       padding: 2em;
-  //     }
-  //
-  //     :host([disabled]) {
-  //       border: 1px dashed var(--typo3-border-color);
-  //     }
-  //   `;
-  // }
+    this.toggleAddContentModeBtn.addEventListener('click', this._handleToggleAddContentModeBtn.bind(this));
+  }
 
   // disable shadow dom for now
   public createRenderRoot(): HTMLElement | ShadowRoot {
@@ -71,7 +66,7 @@ export class ContentElement extends LitElement {
   public render(): TemplateResult {
     const styles = {
       display: this.show? 'block': 'none'
-    }
+    };
 
     return html`
       <div class="t3-page-ce ${this.wrapperClassName} t3js-page-ce t3js-page-ce-sortable"
@@ -79,27 +74,27 @@ export class ContentElement extends LitElement {
         data-language-uid="${this.languageUid}" style=${styleMap(styles)}
       >
 
-        <button class="btn btn-default btn-borderless t3-page-ce-add-rowabove" style="display:none"
+        <button class="btn btn-default btn-borderless t3-page-ce-add t3-page-ce-add-rowabove" hidden
           @click="${(event: Event) => this._handleAddNewContent(event, CEPosition.RowAbove)}">
             <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>
-        <button class="btn btn-default btn-borderless t3-page-ce-add-above"
+        <button class="btn btn-default btn-borderless t3-page-ce-add t3-page-ce-add-above" ?hidden="${!this.isAddContentModeEnabled}"
           @click="${(event: Event) => this._handleAddNewContent(event, CEPosition.Above)}">
           <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>
-        <button class="btn btn-default btn-borderless t3-page-ce-add-left"
+        <button class="btn btn-default btn-borderless t3-page-ce-add t3-page-ce-add-left" ?hidden="${!this.isAddContentModeEnabled}"
           @click="${(event: Event) => this._handleAddNewContent(event, CEPosition.Left)}">
           <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>
-        <button class="btn btn-default btn-borderless t3-page-ce-add-right"
+        <button class="btn btn-default btn-borderless t3-page-ce-add t3-page-ce-add-right" ?hidden="${!this.isAddContentModeEnabled}"
           @click="${(event: Event) => this._handleAddNewContent(event, CEPosition.Right)}">
           <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>
-        <button class="btn btn-default btn-borderless t3-page-ce-add-below"
+        <button class="btn btn-default btn-borderless t3-page-ce-add t3-page-ce-add-below" ?hidden="${!this.isAddContentModeEnabled}"
           @click="${(event: Event) => this._handleAddNewContent(event, CEPosition.Below)}">
           <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>
-        <button class="btn btn-default btn-borderless t3-page-ce-add-rowbelow" style="display:none"
+        <button class="btn btn-default btn-borderless t3-page-ce-add t3-page-ce-add-rowbelow" hidden
           @click="${(event: Event) => this._handleAddNewContent(event, CEPosition.RowAbove)}">
           <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>
@@ -108,7 +103,7 @@ export class ContentElement extends LitElement {
           <div class="t3-page-ce-body">
             <div class="t3-page-ce-body-inner">
               <div class="${this.versioned ? 'ver-element': ''}">
-                ${unsafeHTML(this.innerHTML)}
+                ${unsafeHTML(JSON.parse(this.content))}
               </div>
             </div>
             ${unsafeHTML(JSON.parse(this.footer))}
@@ -119,7 +114,7 @@ export class ContentElement extends LitElement {
   }
 
   private _handleAddNewContent(event: Event, position: CEPosition): void {
-    event.preventDefault()
+    event.preventDefault();
 
     this.dispatchEvent(
       new CustomEvent(
@@ -134,6 +129,19 @@ export class ContentElement extends LitElement {
           composed: true
         }
       )
+    );
+  }
+
+  private _handleToggleAddContentModeBtn(event: Event): void {
+    event.preventDefault()
+    this.isAddContentModeEnabled = !this.isAddContentModeEnabled;
+
+    document.querySelectorAll('typo3-backend-content-element').forEach(
+      (e: ContentElement) => {
+        if (e !== this) {
+          e.isAddContentModeEnabled = false;
+        }
+      }
     )
   }
 }

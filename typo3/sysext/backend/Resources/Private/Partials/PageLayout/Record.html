@@ -19,6 +19,7 @@
 <typo3-backend-content-element
     header="{f:render(section: 'header', arguments: _all) -> f:format.json()}"
     footer="{f:render(section: 'footer', arguments: _all) -> f:format.json()}"
+    content="{f:render(section: 'content', arguments: _all) -> f:format.json()}"
     wrapper-class-name="{item.wrapperClassName}"
     actions="[]"
     table="tt_content"
@@ -31,7 +32,6 @@
     {!item.disabled || item.context.drawingConfiguration.showHidden? 'show': ''}
     {item.versioned? 'versioned': ''}
 >
-    <f:render section="content" arguments="{_all}" />
 </typo3-backend-content-element>
 
 <!-- TODO: new content -->
