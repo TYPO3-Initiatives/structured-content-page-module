@@ -55,7 +55,7 @@
 
         .modulemenu-icon {
             svg {
-                filter: invert(100%) grayscale(100%);
+                filter: grayscale(100%);
             }
         }
     }
@@ -175,17 +175,6 @@ button[aria-expanded="true"]:not(:disabled) {
 .dropdown-menu {
     .modulemenu-name {
         display: block;
-    }
-}
-
-//
-// Model menu group
-//
-.t3js-modulemenu-collapsible {
-    .modulemenu-icon {
-        svg {
-            filter: invert(0);
-        }
     }
 }
 
