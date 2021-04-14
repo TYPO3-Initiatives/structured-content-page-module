@@ -83,7 +83,7 @@ export class Column extends LitElement {
   private _handleAddNewContent(event: CustomEvent): void {
     event.stopPropagation();
 
-    NewContentElement.wizard(event.detail.newContentUrl, '//TODO wizardTitle');
+    NewContentElement.wizard(event.detail.newContentUrl, TYPO3.lang.newContentElement);
 
     console.log(this, event)
   }
