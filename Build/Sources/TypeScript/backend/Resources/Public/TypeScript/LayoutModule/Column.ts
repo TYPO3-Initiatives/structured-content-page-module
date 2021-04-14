@@ -17,6 +17,8 @@ import {classMap} from 'lit-html/directives/class-map';
 import {unsafeHTML} from 'lit-html/directives/unsafe-html';
 import 'TYPO3/CMS/Backend/Element/IconElement';
 import {ContentElement} from 'TYPO3/CMS/Backend/Element/ContentElement';
+import {CEPosition} from 'TYPO3/CMS/Backend/Utility/CEPosition';
+import NewContentElement from 'TYPO3/CMS/Backend/Wizard/NewContentElement';
 
 /**
  * Module: TYPO3/CMS/Backend/LayoutModule/Column
@@ -35,6 +37,11 @@ export class Column extends LitElement {
   @property({type: String}) content: string;
 
   @queryAll('typo3-backend-content-element') contentElements: ContentElement[];
+
+  constructor() {
+    super();
+    this.addEventListener('content-element:add', this._handleAddNewContent);
+  }
 
   // public static get styles(): CSSResult
   // {
@@ -55,8 +62,8 @@ export class Column extends LitElement {
   public createRenderRoot(): HTMLElement | ShadowRoot {
     return this;
   }
+
   public firstUpdated(changedProperties: Map<string, unknown> | Map<number, unknown> | Map<symbol, unknown>) {
-    console.log(this.contentElements)
     this.contentElements.forEach(
       (e: ContentElement) => (
         e.column = this
@@ -71,5 +78,13 @@ export class Column extends LitElement {
         ${unsafeHTML(this.innerHTML)}
       </div>
     `;
+  }
+
+  private _handleAddNewContent(event: CustomEvent): void {
+    event.stopPropagation();
+
+    NewContentElement.wizard(event.detail.newContentUrl, '//TODO wizardTitle');
+
+    console.log(this, event)
   }
 }
