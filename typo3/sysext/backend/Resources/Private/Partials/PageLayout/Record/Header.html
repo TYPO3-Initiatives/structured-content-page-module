@@ -6,6 +6,9 @@
         <f:if condition="{item.editable} && {allowEditContent}">
             <div class="btn-toolbar">
                 <div class="btn-group btn-group-sm">
+                    <button data-t3-ce-toggle-add-content-mode-btn class="btn btn-default">
+                        <typo3-backend-icon identifier="actions-add" size="small"></typo3-backend-icon>
+                    </button>
                     <a href="{item.editUrl}" class="btn btn-default">
                         <core:icon identifier="actions-open" />
                     </a>
