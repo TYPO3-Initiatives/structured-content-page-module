@@ -34,6 +34,7 @@
 >
 </typo3-backend-content-element>
 
+<f:comment>
 <!-- TODO: new content -->
 <f:if condition="{allowEditContent} && {item.column.contentEditable} && {item.column.context.allowNewContent}">
     <div class="t3js-page-new-ce t3-page-ce-wrapper-new-ce"
@@ -46,6 +47,8 @@
         </a>
     </div>
 </f:if>
+</f:comment>
+
 <div class="t3-page-ce-dropzone-available t3js-page-ce-dropzone-available"></div>
 
 <f:comment>
@@ -78,3 +81,17 @@
     <div class="t3-page-ce-dropzone-available t3js-page-ce-dropzone-available"></div>
 </div>
 </f:comment>
+<f:comment>
+    <!-- TODO: this element is currently used to indicate a droppable position for CE drag&drop -->
+</f:comment>
+<f:if condition="{allowEditContent} && {item.column.contentEditable} && {item.column.context.allowNewContent}">
+    <div class="t3js-page-new-ce t3-page-ce-wrapper-new-ce" id="colpos-{item.column.columnNumber}-page-{item.context.pageId}-{item.column.uniqueId}"
+        hidden
+    >
+        <a href="{item.newContentAfterUrl}" title="{item.newContentAfterLinkTitle}" data-title="{item.newContentAfterLinkTitle}"
+            class="btn btn-default btn-sm {f:if(condition:item.column.context.drawingConfiguration.showNewContentWizard, then: 't3js-toggle-new-content-element-wizard disabled')}">
+            <core:icon identifier="actions-add" />
+            {item.newContentAfterTitle}
+        </a>
+    </div>
+</f:if>
