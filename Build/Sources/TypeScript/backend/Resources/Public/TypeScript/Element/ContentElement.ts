@@ -40,7 +40,7 @@ export class ContentElement extends LitElement {
   @property({type: String}) table: string;
   @property({type: Number}) uid: string;
   @property({type: Number, attribute: 'language-uid'}) languageUid: string;
-  @property({type: Number, attribute: 'unique-uid'}) uniqueId: string;
+  @property({type: String, attribute: 'unique-id'}) uniqueId: string;
   @property({type: String, attribute: 'new-content-url'}) newContentUrl: string;
   @property({type: Boolean}) disabled: string;
   @property({type: Boolean}) show: string;
