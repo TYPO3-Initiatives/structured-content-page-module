@@ -18,6 +18,9 @@
             <f:format.raw>{column.titleInaccessible}</f:format.raw>
         </f:else>
     </f:if>
+
+    <f:format.json></f:format.json>
+    Debug: <code>pages.gc_config=‹{context.pageRecord.gc_config}›</code>
 </div>
 
 <f:if condition="{allowEditContent} && {column.contentEditable} && {column.context.allowNewContent}">

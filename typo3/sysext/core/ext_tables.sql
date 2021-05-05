@@ -108,6 +108,9 @@ CREATE TABLE pages (
 	backend_layout varchar(64) DEFAULT '' NOT NULL,
 	backend_layout_next_level varchar(64) DEFAULT '' NOT NULL,
 	tsconfig_includes text,
+    dgc_sorting int(11) DEFAULT '0' NOT NULL,
+    dge_sorting int(11) DEFAULT '0' NOT NULL,
+    dg_config text,
 
 	KEY determineSiteRoot (is_siteroot),
 	KEY language_identifier (l10n_parent,sys_language_uid),
