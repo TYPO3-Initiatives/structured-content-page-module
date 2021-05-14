@@ -1,36 +1,28 @@
 <div class="module-loading-indicator"></div>
 <div class="module-docheader t3js-module-docheader">
     <div class="module-docheader-bar module-docheader-bar-navigation t3js-module-docheader-bar t3js-module-docheader-bar-navigation row">
-        <f:variable name="columnCssClass">module-docheader-bar-column-left col-12 text-end</f:variable>
+        <f:variable name="columnCssClass">module-docheader-bar-column- col-12 text-end</f:variable>
         <f:if condition="{docHeader.menus}">
-            <f:if condition="{docHeader.menus -> f:count()} > 1">
-                <f:then>
-                    <f:variable name="columnCssClass">module-docheader-bar-column-right col-12 col-sm-7 col-md-6 col-lg-8 text-end</f:variable>
-                    <div class="module-docheader-bar-column-left col-12 col-sm-5 col-md-6 col-lg-4">
+                    <f:variable name="columnCssClass">module-docheader-bar-column-right col-12 col-md-6 text-end</f:variable>
+                    <div class="module-docheader-bar-column-left col-12 col-md-6">
                         <div class="row-cols-auto row">
-                            <f:for each="{docHeader.menus}" as="menu">
+                            <f:for each="{docHeader.menus}" as="menu" reverse="true">
                                 <div class="form-group form-group-sm col">
-                                    <f:render partial="Menus/SelectBoxJumpMenu" arguments="{menu:menu}"/>
+                                    <f:render partial="Menus/SwitcherMenu" arguments="{menu:menu}"/>
                                 </div>
                             </f:for>
                         </div>
                     </div>
-                </f:then>
-                <f:else>
-                    <f:variable name="columnCssClass">module-docheader-bar-column-right col-12 col-sm-9 text-end</f:variable>
-                    <div class="module-docheader-bar-column-left col">
-                        <div class="row-cols-auto row">
-                            <f:for each="{docHeader.menus}" as="menu">
-                                <div class="col">
-                                    <f:render partial="Menus/SelectBoxJumpMenu" arguments="{menu:menu}"/>
-                                </div>
-                            </f:for>
-                        </div>
-                    </div>
-                </f:else>
-            </f:if>
         </f:if>
         <div class="{columnCssClass}">
+            <f:render partial="ButtonBar" arguments="{buttons:docHeader.buttons.right}" />
+        </div>
+    </div>
+    <div class="module-docheader-bar module-docheader-bar-buttons t3js-module-docheader-bar t3js-module-docheader-bar-buttons">
+        <div class="module-docheader-bar-column-left">
+            <f:render partial="ButtonBar" arguments="{buttons:docHeader.buttons.left}" />
+        </div>
+        <div class="module-docheader-bar-column-right">
             <f:if condition="{docHeader.metaInformation.recordInformation}">
                 <span class="typo3-docheader-pagePath">
                     <f:translate key="LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.path"/>: <f:format.raw>{docHeader.metaInformation.path}</f:format.raw>
@@ -42,14 +34,6 @@
                 </strong>
                 {docHeader.metaInformation.recordInformationAdditionalInfo}
             </f:if>
-        </div>
-    </div>
-    <div class="module-docheader-bar module-docheader-bar-buttons t3js-module-docheader-bar t3js-module-docheader-bar-buttons">
-        <div class="module-docheader-bar-column-left">
-            <f:render partial="ButtonBar" arguments="{buttons:docHeader.buttons.left}" />
-        </div>
-        <div class="module-docheader-bar-column-right">
-            <f:render partial="ButtonBar" arguments="{buttons:docHeader.buttons.right}" />
         </div>
     </div>
 </div>

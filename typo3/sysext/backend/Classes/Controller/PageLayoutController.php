@@ -756,7 +756,7 @@ class PageLayoutController
                 ->setIcon($this->iconFactory->getIcon('actions-view-page', Icon::SIZE_SMALL))
                 ->setHref('#');
 
-            $this->buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, 3);
+            $this->buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT);
         }
         // Shortcut
         $shortcutButton = $this->buttonBar->makeShortcutButton()
@@ -827,7 +827,7 @@ class PageLayoutController
                     ->setHref($url)
                     ->setTitle($lang->getLL('editPageLanguageOverlayProperties'))
                     ->setIcon($this->iconFactory->getIcon('mimetypes-x-content-page-language-overlay', Icon::SIZE_SMALL));
-                $this->buttonBar->addButton($editLanguageButton, ButtonBar::BUTTON_POSITION_LEFT, 3);
+                $this->buttonBar->addButton($editLanguageButton, ButtonBar::BUTTON_POSITION_LEFT);
             }
             $urlParameters = [
                 'edit' => [

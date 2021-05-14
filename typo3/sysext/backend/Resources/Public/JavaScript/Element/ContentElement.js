@@ -16,27 +16,27 @@ var __decorate=this&&this.__decorate||function(e,t,o,n){var d,i=arguments.length
         data-language-uid="${this.languageUid}" style=${n.styleMap(e)}
       >
 
-        <button class="btn btn-default btn-borderless t3-page-ce-add t3-page-ce-add-rowabove" hidden
+        <button class="btn btn-default btn-fab t3-page-ce-add t3-page-ce-add-rowabove" hidden
           @click="${e=>this._handleAddNewContent(e,i.CEPosition.RowAbove)}">
             <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>
-        <button class="btn btn-default btn-borderless t3-page-ce-add t3-page-ce-add-above" ?hidden="${!this.isAddContentModeEnabled}"
+        <button class="btn btn-default btn-fab t3-page-ce-add t3-page-ce-add-above" ?hidden="${!this.isAddContentModeEnabled}"
           @click="${e=>this._handleAddNewContent(e,i.CEPosition.Above)}">
           <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>
-        <button class="btn btn-default btn-borderless t3-page-ce-add t3-page-ce-add-left" ?hidden="${!this.isAddContentModeEnabled}"
+        <button class="btn btn-default btn-fab t3-page-ce-add t3-page-ce-add-left" ?hidden="${!this.isAddContentModeEnabled}"
           @click="${e=>this._handleAddNewContent(e,i.CEPosition.Left)}">
           <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>
-        <button class="btn btn-default btn-borderless t3-page-ce-add t3-page-ce-add-right" ?hidden="${!this.isAddContentModeEnabled}"
+        <button class="btn btn-default btn-fab t3-page-ce-add t3-page-ce-add-right" ?hidden="${!this.isAddContentModeEnabled}"
           @click="${e=>this._handleAddNewContent(e,i.CEPosition.Right)}">
           <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>
-        <button class="btn btn-default btn-borderless t3-page-ce-add t3-page-ce-add-below" ?hidden="${!this.isAddContentModeEnabled}"
+        <button class="btn btn-default btn-fab t3-page-ce-add t3-page-ce-add-below" ?hidden="${!this.isAddContentModeEnabled}"
           @click="${e=>this._handleAddNewContent(e,i.CEPosition.Below)}">
           <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>
-        <button class="btn btn-default btn-borderless t3-page-ce-add t3-page-ce-add-rowbelow" hidden
+        <button class="btn btn-default btn-fab t3-page-ce-add t3-page-ce-add-rowbelow" hidden
           @click="${e=>this._handleAddNewContent(e,i.CEPosition.RowAbove)}">
           <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>

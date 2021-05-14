@@ -36,7 +36,7 @@
     width: 100%;
     overflow: hidden;
     border: none;
-    border-radius: 3px;
+    border-radius: $border-radius-base;
     background-color: transparent;
     text-align: left;
 
@@ -55,7 +55,7 @@
 
         .modulemenu-icon {
             svg {
-                filter: grayscale(100%);
+                filter: grayscale(100%) invert(1);
             }
         }
     }
@@ -83,6 +83,18 @@
 
     svg {
         filter: grayscale(100%);
+
+        path:first-child:not([fill^="#FFF"]) {
+            fill: transparent;
+        }
+
+        rect:first-child:not([fill^="#FFF"]) {
+            fill: transparent;
+        }
+
+        g[fill^="#FFF"] path {
+            fill: inherit !important;
+        }
     }
 }
 
@@ -207,4 +219,12 @@ button[aria-expanded="true"]:not(:disabled) {
         width: auto;
         height: auto;
     }
+}
+
+body:not(.scaffold-modulemenu-expanded) .modulemenu-group-container {
+    display: block !important;
+}
+
+body:not(.scaffold-modulemenu-expanded) button.t3js-modulemenu-collapsible {
+    display: none !important;
 }

@@ -2,21 +2,21 @@
 // Variables
 //
 $page-grid-spacing: 20px;
-$page-grid-cell-bg: #fafafa;
+$page-grid-cell-bg: transparent;
 $page-grid-cell-border: #cdcdcd;
 $page-grid-cell-restricted: $state-danger-bg;
 $page-column-header-color: #999;
 $page-column-header-bg: #fff;
 $page-column-header-border: $page-grid-cell-border;
-$page-ce-border: #ccc;
-$page-ce-hover-border: #aaa;
+$page-ce-border: #767676;
+$page-ce-hover-border: #767676;
 $page-ce-border-radius: 2px;
 $page-ce-header-color: #fff;
-$page-ce-header-bg: #eaeaea;
-$page-ce-header-hover-bg: #d0d0d0;
+$page-ce-header-bg: transparent;
+$page-ce-header-hover-bg: transparent;
 $page-ce-body-bg: #fff;
 $page-ce-footer-bg: #fafafa;
-$page-ce-hidden-opacity: 0.4;
+$page-ce-hidden-opacity: 0.6;
 $page-ce-header-bg-danger: $danger;
 $page-ce-header-hover-bg-danger: darken($danger, 10%);
 $page-ce-header-border-danger: $page-ce-header-bg-danger;
@@ -143,6 +143,7 @@ $page-ce-dropzone-possible-border: $state-warning-border;
     @include transition(opacity 0.15s ease-in);
 
     margin: $page-grid-spacing;
+    position: relative;
 
     &.active-drag {
         z-index: 4500;
@@ -182,6 +183,13 @@ $page-ce-dropzone-possible-border: $state-warning-border;
     .t3-page-ce-header-icons-left {
         float: left;
 
+        .t3js-flag,
+        .t3js-language-title {
+            transform: scale(0);
+            width: 0;
+            display: inline-block;
+        }
+
         > a {
             display: inline-block;
             padding: $padding-small-vertical $padding-small-horizontal;
@@ -212,6 +220,17 @@ $page-ce-dropzone-possible-border: $state-warning-border;
     }
 
     &:hover {
+        &:before {
+            content: '';
+            background: #929292;
+            width: 4px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: block;
+        }
+
         .t3-page-ce-header {
             background: $page-ce-header-hover-bg;
         }
@@ -290,8 +309,17 @@ $page-ce-dropzone-possible-border: $state-warning-border;
 
     @include transition(opacity 0.15s ease-in);
 
+    .t3-page-ce-header {
+        border: 1px dashed $page-ce-border;
+        border-bottom: 0;
+    }
+
+    .t3-page-ce-body {
+        border: 1px dashed $page-ce-border;
+        border-top: 0;
+    }
+
     &:hover {
-        opacity: 1;
     }
 }
 

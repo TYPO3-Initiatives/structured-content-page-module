@@ -4,11 +4,11 @@
 
 .btn-default,
 .btn-light {
-    @include button-variant($gray-200, $gray-500, $gray-800, $gray-300, rgb(156, 156, 156), $gray-800, rgb(195, 195, 195), rgb(123, 123, 123), $gray-800);
+    @include button-variant(transparent, transparent, $gray-800, $gray-300, $gray-300, $gray-800, $gray-800, $gray-800, #fff);
 }
 
 .btn-primary {
-    @include button-variant($primary, darken($primary, 10%), color-contrast(darken($primary, 50%)), darken($primary, 10%), darken($primary, 20%), $gray-100);
+    @include button-variant($primary, darken($primary, 10%), color-contrast($primary), darken($primary, 10%), darken($primary, 20%), color-contrast($primary));
 }
 
 .btn-info {
@@ -16,11 +16,11 @@
 }
 
 .btn-success {
-    @include button-variant($success, darken($success, 10%), color-contrast(darken($success, 50%)), darken($success, 10%), darken($success, 20%), $gray-100);
+    @include button-variant($success, darken($success, 10%), color-contrast($success), darken($success, 10%), darken($success, 20%), color-contrast($success));
 }
 
 .btn-warning {
-    @include button-variant($warning, darken($warning, 10%), color-contrast(darken($warning, 50%)), darken($warning, 10%), darken($warning, 20%), $gray-100);
+    @include button-variant($warning, darken($warning, 10%), color-contrast($warning), darken($warning, 10%), darken($warning, 20%), color-contrast($warning));
 }
 
 .btn-danger {
@@ -39,6 +39,12 @@
     + .btn-block {
         margin-top: $spacer / 2;
     }
+}
+
+.btn-fab {
+    border-radius: 1rem;
+    border-color: #333;
+    background-color: #fff;
 }
 
 .btn-borderless {

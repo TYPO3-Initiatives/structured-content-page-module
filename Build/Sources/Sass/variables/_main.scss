@@ -111,7 +111,7 @@ $padding-xs-vertical: 2px;
 $padding-xs-horizontal: 4px;
 $line-height-large: 1.3333333;
 $line-height-small: 1.5;
-$border-radius: 0.125rem;
+$border-radius: 0.5rem;
 $border-radius-sm: $border-radius;
 $border-radius-lg: $border-radius;
 
@@ -128,11 +128,16 @@ $table-group-separator-color: $table-border-color;
 // Buttons
 $btn-font-weight: normal;
 $btn-default-color: #333;
-$btn-default-bg: #eee;
-$btn-default-border: #bbb;
+$btn-default-bg: transparent;
+$btn-default-border: transparent;
 $btn-primary-color: #fff;
 $btn-primary-bg: $primary;
 $btn-primary-border: darken($btn-primary-bg, 5%);
+$btn-box-shadow: none;
+$btn-padding-y: 0.4rem;
+$btn-padding-x: 0.5rem;
+$btn-padding-y-sm: 0.25rem;
+$btn-padding-x-sm: 0.25rem;
 
 // Pill
 $rounded-pill: 0.625rem;
@@ -318,8 +323,8 @@ $module-bg: #fff;
 $module-color: inherit;
 $module-dark-bg: #333;
 $module-dark-color: #ccc;
-$module-docheader-bg: #eee;
-$module-docheader-border: #c3c3c3;
+$module-docheader-bg: #fff;
+$module-docheader-border: transparent;
 $module-docheader-zindex: 300;
 $module-docheader-height: 65px;
 $module-docheader-padding-vertical: 0;

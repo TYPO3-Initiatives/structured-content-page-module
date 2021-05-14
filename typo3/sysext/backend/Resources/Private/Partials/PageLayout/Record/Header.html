@@ -1,33 +1,24 @@
 <div class="t3-page-ce-header {f:if(condition: '{allowEditContent} && {item.dragAndDropAllowed}', then: 't3-page-ce-header-draggable t3js-page-ce-draghandle')}">
     <div class="t3-page-ce-header-icons-left">
-        {item.icons -> f:format.raw()}
+        {item.icons -> f:format.raw()} <span class="t3-page-ce-type"><strong>{item.record.CType}</strong></span>
     </div>
     <div class="t3-page-ce-header-icons-right">
         <f:if condition="{item.editable} && {allowEditContent}">
             <div class="btn-toolbar">
-                <div class="btn-group btn-group-sm">
-                    <button data-t3-ce-toggle-add-content-mode-btn class="btn btn-default">
+                    <button data-t3-ce-toggle-add-content-mode-btn class="btn btn-default btn-sm">
                         <typo3-backend-icon identifier="actions-add" size="small"></typo3-backend-icon>
                     </button>
-                    <a href="{item.editUrl}" class="btn btn-default">
+                    <a href="{item.editUrl}" class="btn btn-default btn-sm">
                         <core:icon identifier="actions-open" />
                     </a>
                     <f:if condition="{item.visibilityToggling}">
-                        <a class="btn btn-default" href="{item.visibilityToggleUrl}" title="{item.visibilityToggleTitle}">
+                        <a class="btn btn-default btn-sm" href="{item.visibilityToggleUrl}" title="{item.visibilityToggleTitle}">
                             <core:icon identifier="actions-edit-{item.visibilityToggleIconName}" />
                         </a>
                     </f:if>
-                    <f:if condition="{item.delible}">
-                        <a class="btn btn-default t3js-modal-trigger" href="{item.deleteUrl}"
-                        data-severity="warning"
-                        data-title="{item.deleteConfirmText}"
-                        data-bs-content="{item.deleteConfirmText}"
-                        data-button-close-text="{item.deleteCancelText}"
-                        title="{item.deleteTitle}">
-                            <core:icon identifier="actions-edit-delete" size="small" />
-                        </a>
-                    </f:if>
-                </div>
+		<a href="#" class="btn btn-default btn-sm t3js-contextmenutrigger" data-table="tt_content" data-uid="{item.record.uid}">
+		    <core:icon identifier="actions-menu-alternative" size="small" />
+		</a> 
             </div>
         </f:if>
     </div>

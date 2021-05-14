@@ -1,11 +1,6 @@
 <div class="t3-page-column-header">
     <f:if condition="{column.active}">
         <f:then>
-            <div class="t3-page-column-header-icons">
-                <f:if condition="{allowEditContent} && {column.editUrl}">
-                    <a href="{column.editUrl}" title="{column.editLinkTitle}"><core:icon identifier="actions-document-open" /></a>
-                </f:if>
-            </div>
             {column.title}
         </f:then>
         <f:else if="{column.unassigned}">

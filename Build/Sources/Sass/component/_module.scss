@@ -164,6 +164,16 @@ $module-body-padding: $module-body-padding-vertical $module-body-padding-horizon
 
     .module-docheader-bar-column-right {
         float: right;
+
+        .btn-toolbar {
+            justify-content: flex-end;
+        }
+    }
+
+    .module-docheader-bar-column-.text-end {
+        .btn-toolbar {
+            justify-content: flex-end;
+        }
     }
 }
 

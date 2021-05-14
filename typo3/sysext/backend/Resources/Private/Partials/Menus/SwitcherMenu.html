@@ -1,0 +1,21 @@
+<f:if condition="{menu.menuItems -> f:count()} > 1">
+	<f:if condition="{menu.identifier} == 'languageMenu' || {menu.identifier} == '_langSelector'">
+		<f:then>
+			{menu.label} <select class="form-select t3-js-jumpMenuBox"
+					name="{menu.identifier}"
+					data-menu-identifier="{menu.dataIdentifier}"
+					data-global-event="change" data-action-navigate="$value">
+				<f:for each="{menu.menuItems}" as="menuItem">
+				    <option value="{menuItem.href}" {f:if(condition: '{menuItem.active}', then: ' selected="selected"')}>{menuItem.title}</option>
+				</f:for>
+			</select>
+		</f:then>
+		<f:else>
+			
+			<f:for each="{menu.menuItems}" as="menuItem">
+				<a href="{menuItem.href}" class="btn btn-default {f:if(condition: '{menuItem.active}', then: 'active')}">{menuItem.title}</a>
+			</f:for>
+			
+		</f:else>
+	</f:if>
+</f:if>

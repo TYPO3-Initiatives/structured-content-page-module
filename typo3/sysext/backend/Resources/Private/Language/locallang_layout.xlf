@@ -187,10 +187,10 @@
 				<source>QuickEdit</source>
 			</trans-unit>
 			<trans-unit id="m_function_1" resname="m_function_1">
-				<source>Columns</source>
+				<source>Compose</source>
 			</trans-unit>
 			<trans-unit id="m_function_2" resname="m_function_2">
-				<source>Languages</source>
+				<source>Translate</source>
 			</trans-unit>
 			<trans-unit id="gridView" resname="gridView">
 				<source>Grid-View</source>
