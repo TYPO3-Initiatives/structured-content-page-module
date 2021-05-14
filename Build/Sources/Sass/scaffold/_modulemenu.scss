@@ -223,6 +223,7 @@ button[aria-expanded="true"]:not(:disabled) {
 
 body:not(.scaffold-modulemenu-expanded) .modulemenu-group-container {
     display: block !important;
+    min-width: 40px;
 }
 
 body:not(.scaffold-modulemenu-expanded) button.t3js-modulemenu-collapsible {
