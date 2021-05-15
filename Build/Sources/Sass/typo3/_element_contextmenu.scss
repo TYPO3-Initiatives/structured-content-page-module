@@ -11,8 +11,10 @@ div#contentMenu1 {
 .context-menu {
     .list-group {
         margin-bottom: 0;
-        background-color: #fff;
+        background-color: #292929;
         min-width: 150px;
+        color: #fff;
+        border-radius: 0;
 
         &-item {
             margin-bottom: 0;
@@ -20,6 +22,8 @@ div#contentMenu1 {
             padding: 5px;
             border-bottom-color: transparent;
             border-top-color: transparent;
+            background-color: #292929;
+            color: #fff;
 
             &:first-child {
                 border-top-color: $gray-300;
@@ -38,17 +42,11 @@ div#contentMenu1 {
             }
 
             &:hover,
-            &:focus {
+            &:focus-visible {
                 z-index: 1; // Place hover/focus items above their siblings for proper border styling
                 color: $list-group-action-hover-color;
                 text-decoration: none;
                 background-color: $list-group-hover-bg;
-            }
-
-            &:focus {
-                outline: 1px auto Highlight;
-                outline: 1px auto -webkit-focus-ring-color;
-                outline-offset: -3px;
             }
         }
 
