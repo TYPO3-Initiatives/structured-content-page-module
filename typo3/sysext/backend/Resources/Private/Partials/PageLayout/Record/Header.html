@@ -1,6 +1,6 @@
 <div class="t3-page-ce-header {f:if(condition: '{allowEditContent} && {item.dragAndDropAllowed}', then: 't3-page-ce-header-draggable t3js-page-ce-draghandle')}">
     <div class="t3-page-ce-header-icons-left">
-        {item.icons -> f:format.raw()} <span class="t3-page-ce-type"><strong>{item.record.CType}</strong></span>
+        {item.icons -> f:format.raw()} <span class="t3-page-ce-type"><strong>{context.contentTypeLabels.{item.record.CType}}</strong></span>
     </div>
     <div class="t3-page-ce-header-icons-right">
         <f:if condition="{item.editable} && {allowEditContent}">
