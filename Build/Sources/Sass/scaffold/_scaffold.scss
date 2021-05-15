@@ -88,12 +88,13 @@ body {
     color: $scaffold-modulemenu-color;
     position: sticky;
     top: $scaffold-topbar-height;
-    width: auto;
+    width: 70px;
     height: calc(100vh - #{$scaffold-topbar-height});
     max-width: 100%;
     z-index: $scaffold-modulemenu-zindex;
     overflow: auto;
     scrollbar-width: thin;
+    transition: width 0.5s;
 
     &::-webkit-scrollbar {
         width: 5px;
@@ -252,7 +253,7 @@ body {
 .scaffold {
     .scaffold-modulemenu {
         @media (max-width: $scaffold-breakpoint-max) {
-            display: none;
+            width: 1px;
         }
     }
 }
@@ -264,7 +265,7 @@ body {
         width: $scaffold-modulemenu-expanded-width;
 
         @media (max-width: $scaffold-breakpoint-max) {
-            display: block;
+            width: $scaffold-modulemenu-expanded-width;
         }
     }
 }
