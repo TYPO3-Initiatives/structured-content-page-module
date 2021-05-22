@@ -3,6 +3,7 @@
 </div>
 <f:if condition="{hasModules}">
     <div class="scaffold-modulemenu t3js-scaffold-modulemenu">
+        <f:render section="ToggleButton" arguments="{icon: 'actions-menu', enabled: 'true', classes: 'topbar-button-modulemenu t3js-topbar-button-modulemenu', title: '{f:translate(key: \'LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:toolbarItems.minMaxModuleMenu\')}'}" />
         <f:format.raw>{moduleMenu}</f:format.raw>
     </div>
 </f:if>
@@ -23,3 +24,21 @@
     </div>
     <div class="scaffold-content-overlay t3js-scaffold-content-overlay"></div>
 </div>
+
+
+<f:section name="ToggleButton">
+    <f:variable name="disabled" value="{f:if(condition: '!{enabled}', then: 1, else: 0)}" />
+    <f:variable name="disabledAttr" value="{f:if(condition: '{disabled}', then: 'disabled')}" />
+
+    <button {disabledAttr} class="topbar-button {classes}" title="{title}" aria-label="{title}">
+        <core:icon identifier="actions-caret-left" alternativeMarkupIdentifier="inline" />
+        <f:render section="Icon" arguments="{identifier: icon, disabled: disabled}" />
+        <core:icon identifier="actions-caret-right" alternativeMarkupIdentifier="inline" />
+    </button>
+</f:section>
+
+<f:section name="Icon">
+    <f:variable name="overlay" value="{f:if(condition: '{disabled}', then: 'overlay-readonly', else: null)}" />
+
+    <core:icon identifier="{identifier}" alternativeMarkupIdentifier="inline" overlay="{overlay}" />
+</f:section>
