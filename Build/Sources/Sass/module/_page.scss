@@ -41,6 +41,102 @@ $page-ce-dropzone-possible-border: $state-warning-border;
     table-layout: fixed;
 }
 
+.t3-grid-new-content-wizard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 100%;
+    z-index: 300;
+    padding-top: 4px;
+    background: #f5f5f5;
+    border-right: 1px solid #c8c8c8;
+    transition: width 0.5s;
+}
+
+.new-content-wizard-expanded .t3-grid-new-content-wizard {
+    width: 240px;
+}
+
+[data-module-name='web_layout'] {
+    padding-left: 70px;
+    transition: padding-left 0.5s;
+}
+
+.new-content-wizard-expanded[data-module-name='web_layout'] {
+    padding-left: 240px;
+}
+
+.t3js-new-content-wizard-switcher {
+    position: absolute;
+    top: 4px;
+    right: 10px;
+}
+
+.t3js-new-content-wizard-switcher.collapse,
+.new-content-wizard-expanded .t3js-new-content-wizard-switcher.expand {
+    display: none;
+}
+
+.new-content-wizard-expanded .t3js-new-content-wizard-switcher.collapse {
+    display: inline-block;
+}
+
+.t3js-new-content-wizard-bar-container {
+    margin-top: -17px;
+}
+
+.t3js-new-content-wizard-bar-container .navbar-header {
+    width: 0;
+    overflow: hidden;
+}
+
+.new-content-wizard-expanded .navbar-header {
+    width: calc(100% - 50px);
+}
+
+.t3js-new-content-wizard-bar-container .t3js-tabmenu-item.nav-item {
+    width: 100%;
+}
+
+.t3js-new-content-wizard-bar-container .nav-tabs,
+.t3js-new-content-wizard-bar-container .nav-link {
+    border-color: transparent !important;
+    background: transparent !important;
+    display: none;
+    transition: display 0.5s;
+}
+
+.new-content-wizard-expanded .nav-tabs,
+.new-content-wizard-expanded .nav-link {
+    display: block;
+}
+
+.t3js-new-content-wizard-bar-container .nav-link.active {
+    font-weight: bold;
+}
+
+.t3js-new-content-wizard-bar-container .media-new-content-element-wizard {
+    width: 100%;
+    margin-bottom: 10px;
+    max-height: 35px;
+    overflow: hidden;
+}
+
+.t3js-new-content-wizard-bar-container .media-body {
+    font-size: 0;
+}
+
+.t3js-new-content-wizard-bar-container .media-body strong {
+    font-size: 0.75rem;
+}
+
+.t3js-new-content-wizard-bar-container .panel-tab {
+    border-color: transparent;
+    box-shadow: none;
+    background-color: transparent;
+}
+
 .t3-grid-container {
     margin: 0 ($page-grid-spacing * -1) $line-height-computed;
 }
@@ -317,9 +413,6 @@ $page-ce-dropzone-possible-border: $state-warning-border;
     .t3-page-ce-body {
         border: 1px dashed $page-ce-border;
         border-top: 0;
-    }
-
-    &:hover {
     }
 }
 
