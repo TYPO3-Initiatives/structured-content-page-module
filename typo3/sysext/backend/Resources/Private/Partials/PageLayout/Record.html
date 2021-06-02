@@ -17,9 +17,6 @@
 </f:section>
 
 <typo3-backend-content-element
-    header="{f:render(section: 'header', arguments: _all) -> f:format.json()}"
-    footer="{f:render(section: 'footer', arguments: _all) -> f:format.json()}"
-    content="{f:render(section: 'content', arguments: _all) -> f:format.json()}"
     wrapper-class-name="{item.wrapperClassName}"
     actions="[]"
     table="tt_content"
@@ -32,55 +29,19 @@
     {!item.disabled || item.context.drawingConfiguration.showHidden? 'show': ''}
     {item.versioned? 'versioned': ''}
 >
-</typo3-backend-content-element>
-
-<f:comment>
-<!-- TODO: new content -->
-<f:if condition="{allowEditContent} && {item.column.contentEditable} && {item.column.context.allowNewContent}">
-    <div class="t3js-page-new-ce t3-page-ce-wrapper-new-ce"
-        id="colpos-{item.column.columnNumber}-page-{item.context.pageId}-{item.column.uniqueId}">
-        <a href="{item.newContentAfterUrl}" title="{item.newContentAfterLinkTitle}"
-            data-title="{item.newContentAfterLinkTitle}"
-            class="btn btn-default btn-sm {f:if(condition:item.column.context.drawingConfiguration.showNewContentWizard, then: 't3js-toggle-new-content-element-wizard disabled')}">
-            <core:icon identifier="actions-add"/>
-            {item.newContentAfterTitle}
-        </a>
+    <div slot="header">
+        {f:render(section: 'header', arguments: _all)}
     </div>
-</f:if>
-</f:comment>
+    <div slot="content">
+        {f:render(section: 'content', arguments: _all)}
+    </div>
+    <div slot="footer">
+        {f:render(section: 'footer', arguments: _all)}
+    </div>
+</typo3-backend-content-element>
 
 <div class="t3-page-ce-dropzone-available t3js-page-ce-dropzone-available"></div>
 
-<f:comment>
-<!-- TODO: old school: -->
-<div class="t3-page-ce {item.wrapperClassName} t3js-page-ce t3js-page-ce-sortable" id="element-tt_content-{item.record.uid}" data-table="tt_content" data-uid="{item.record.uid}" data-language-uid="{item.record.sys_language_uid}" style="{style}">
-    <div class="t3-page-ce-dragitem" id="{item.uniqueId}">
-        <f:render partial="PageLayout/Record/{item.record.CType}/Header" arguments="{_all}" optional="1">
-            <f:render partial="PageLayout/Record/Header" arguments="{_all}" />
-        </f:render>
-        <div class="t3-page-ce-body">
-            <div class="t3-page-ce-body-inner">
-                <div class="{f:if(condition: item.versioned, then: 'ver-element')}">
-                    <f:render partial="PageLayout/Record/Preview" arguments="{_all}" />
-                </div>
-            </div>
-            <f:render partial="PageLayout/Record/{item.record.CType}/Footer" arguments="{_all}" optional="1">
-                <f:render partial="PageLayout/Record/Footer" arguments="{_all}" />
-            </f:render>
-        </div>
-    </div>
-    <f:if condition="{allowEditContent} && {item.column.contentEditable} && {item.column.context.allowNewContent}">
-        <div class="t3js-page-new-ce t3-page-ce-wrapper-new-ce" id="colpos-{item.column.columnNumber}-page-{item.context.pageId}-{item.column.uniqueId}">
-            <a href="{item.newContentAfterUrl}" title="{item.newContentAfterLinkTitle}" data-title="{item.newContentAfterLinkTitle}"
-                class="btn btn-default btn-sm {f:if(condition:item.column.context.drawingConfiguration.showNewContentWizard, then: 't3js-toggle-new-content-element-wizard disabled')}">
-                <core:icon identifier="actions-add" />
-                {item.newContentAfterTitle}
-            </a>
-        </div>
-    </f:if>
-    <div class="t3-page-ce-dropzone-available t3js-page-ce-dropzone-available"></div>
-</div>
-</f:comment>
 <f:comment>
     <!-- TODO: this element is currently used to indicate a droppable position for CE drag&drop -->
 </f:comment>

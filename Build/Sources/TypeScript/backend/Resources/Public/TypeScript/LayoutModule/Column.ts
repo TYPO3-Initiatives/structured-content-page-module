@@ -59,9 +59,9 @@ export class Column extends LitElement {
   // }
 
   // disable shadow dom for now
-  public createRenderRoot(): HTMLElement | ShadowRoot {
-    return this;
-  }
+  // public createRenderRoot(): HTMLElement | ShadowRoot {
+  //   return this;
+  // }
 
   public firstUpdated(changedProperties: Map<string, unknown> | Map<number, unknown> | Map<symbol, unknown>) {
     this.contentElements.forEach(
@@ -73,6 +73,9 @@ export class Column extends LitElement {
 
   public render(): TemplateResult {
     return html`
+      <!-- TODO: this is just a quick enabler for now -->
+      <link rel="stylesheet" type="text/css" href="/typo3/sysext/backend/Resources/Public/Css/backend.css" >
+
       <div data-colpos="${this.colpos}" data-language-uid="${this.languageUid}"
         class="t3js-sortable t3js-sortable-lang t3js-sortable-lang-${this.languageUid} t3-page-ce-wrapper">
         ${unsafeHTML(this.innerHTML)}

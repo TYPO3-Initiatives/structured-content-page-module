@@ -32,9 +32,6 @@ import {CEPosition} from 'TYPO3/CMS/Backend/Utility/CEPosition';
  */
 @customElement('typo3-backend-content-element')
 export class ContentElement extends LitElement {
-  @property({type: String}) header: string;
-  @property({type: String}) footer: string;
-  @property({type: String}) content: string;
   @property({type: Array}) actions: Array<any>;
   @property({type: String, attribute: 'wrapper-class-name'}) wrapperClassName: string;
   @property({type: String}) table: string;
@@ -59,9 +56,9 @@ export class ContentElement extends LitElement {
   }
 
   // disable shadow dom for now
-  public createRenderRoot(): HTMLElement | ShadowRoot {
-    return this;
-  }
+  // public createRenderRoot(): HTMLElement | ShadowRoot {
+  //   return this;
+  // }
 
   public render(): TemplateResult {
     const styles = {
@@ -69,6 +66,9 @@ export class ContentElement extends LitElement {
     };
 
     return html`
+      <!-- TODO: this is just a quick enabler for now -->
+      <link rel="stylesheet" type="text/css" href="/typo3/sysext/backend/Resources/Public/Css/backend.css" >
+
       <div class="t3-page-ce ${this.wrapperClassName} t3js-page-ce t3js-page-ce-sortable"
         id="element-tt_content-${this.uid}" data-table="tt_content" data-uid="${this.uid}"
         data-language-uid="${this.languageUid}" style=${styleMap(styles)}
@@ -99,14 +99,14 @@ export class ContentElement extends LitElement {
           <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>
         <div class="t3-page-ce-dragitem" id="${this.uniqueId}">
-          ${unsafeHTML(JSON.parse(this.header))}
+          <slot name="header"></slot>
           <div class="t3-page-ce-body">
             <div class="t3-page-ce-body-inner">
               <div class="${this.versioned ? 'ver-element': ''}">
-                ${unsafeHTML(JSON.parse(this.content))}
+                <slot name="content"></slot>
               </div>
             </div>
-            ${unsafeHTML(JSON.parse(this.footer))}
+            <slot name="footer"></slot>
           </div>
         </div>
       </div>

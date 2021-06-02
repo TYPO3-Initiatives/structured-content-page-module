@@ -19,7 +19,7 @@ var __decorate=this&&this.__decorate||function(e,t,n,i){var r,o=arguments.length
             <typo3-backend-tree-toolbar .tree="${this.tree}" class="svg-toolbar"></typo3-backend-tree-toolbar>
             <div class="navigation-tree-container">
               ${this.renderMountPoint()}
-              <typo3-backend-component-page-browser-tree id="typo3-pagetree-tree" class="svg-tree-wrapper" .setup=${e} @svg-tree:initialized=${()=>{this.tree.dispatchEvent(new Event("svg-tree:visible")),this.tree.addEventListener("typo3:svg-tree:expand-toggle",this.toggleExpandState),this.tree.addEventListener("typo3:svg-tree:node-selected",this.loadRecordsOfPage),this.tree.addEventListener("typo3:svg-tree:nodes-prepared",this.selectActivePageInTree);this.querySelector("typo3-backend-tree-toolbar").tree=this.tree}}></typo3-backend-component-page-browser-tree>
+              <typo3-backend-component-page-browser-tree id="typo3-pagetree-tree" class="svg-tree-wrapper" .setup=${e} @svg-tree:initialized=${()=>{this.tree.dispatchEvent(new Event("svg-tree:visible")),this.tree.addEventListener("typo3:svg-tree:expand-toggle",this.toggleExpandState),this.tree.addEventListener("typo3:svg-tree:node-selected",this.loadRecordsOfPage),this.tree.addEventListener("typo3:svg-tree:nodes-prepared",this.selectActivePageInTree),this.querySelector("typo3-backend-tree-toolbar").tree=this.tree}}></typo3-backend-component-page-browser-tree>
             </div>
           </div>
           ${this.renderLoader()}
