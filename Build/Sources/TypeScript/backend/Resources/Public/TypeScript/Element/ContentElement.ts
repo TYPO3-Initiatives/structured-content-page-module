@@ -32,6 +32,9 @@ import {CEPosition} from 'TYPO3/CMS/Backend/Utility/CEPosition';
  */
 @customElement('typo3-backend-content-element')
 export class ContentElement extends LitElement {
+  @property({type: String}) header: string;
+  @property({type: String}) footer: string;
+  @property({type: String}) content: string;
   @property({type: Array}) actions: Array<any>;
   @property({type: String, attribute: 'wrapper-class-name'}) wrapperClassName: string;
   @property({type: String}) table: string;
@@ -56,9 +59,9 @@ export class ContentElement extends LitElement {
   }
 
   // disable shadow dom for now
-  // public createRenderRoot(): HTMLElement | ShadowRoot {
-  //   return this;
-  // }
+  public createRenderRoot(): HTMLElement | ShadowRoot {
+    return this;
+  }
 
   public render(): TemplateResult {
     const styles = {
@@ -99,14 +102,14 @@ export class ContentElement extends LitElement {
           <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>
         <div class="t3-page-ce-dragitem" id="${this.uniqueId}">
-          <slot name="header"></slot>
+          ${unsafeHTML(JSON.parse(this.header))}
           <div class="t3-page-ce-body">
             <div class="t3-page-ce-body-inner">
               <div class="${this.versioned ? 'ver-element': ''}">
-                <slot name="content"></slot>
+                ${unsafeHTML(JSON.parse(this.content))}
               </div>
             </div>
-            <slot name="footer"></slot>
+            ${unsafeHTML(JSON.parse(this.footer))}
           </div>
         </div>
       </div>

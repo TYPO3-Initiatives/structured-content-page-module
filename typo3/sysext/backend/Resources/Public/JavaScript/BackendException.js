@@ -10,4 +10,4 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
-define(["require","exports"],(function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.BackendException=void 0,t.BackendException=class{constructor(e="",t=0){this.message=e,this.code=t}}}));
+define(["require","exports"],(function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.BackendException=void 0;t.BackendException=class{constructor(e="",t=0){this.message=e,this.code=t}}}));

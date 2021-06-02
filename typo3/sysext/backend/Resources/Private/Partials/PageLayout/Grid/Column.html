@@ -29,16 +29,5 @@
                 <f:render partial="PageLayout/Record" arguments="{_all}" />
             </f:for>
         </typo3-backend-column>
-
-        <f:comment>
-<!-- TODO: old-school: -->
-        <div data-colpos="{column.columnNumber}" data-language-uid="{column.context.siteLanguage.languageId}"
-            class="t3js-sortable t3js-sortable-lang t3js-sortable-lang-{column.context.siteLanguage.languageId} t3-page-ce-wrapper
-                {f:if(condition: column.items, else: 't3-page-ce-empty')}">
-            <f:for each="{column.items}" as="item">
-                <f:render partial="PageLayout/Record" arguments="{_all}" />
-            </f:for>
-        </div>
-        </f:comment>
     </f:if>
 </td>

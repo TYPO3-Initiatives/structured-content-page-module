@@ -78,7 +78,7 @@ export class Column extends LitElement {
 
       <div data-colpos="${this.colpos}" data-language-uid="${this.languageUid}"
         class="t3js-sortable t3js-sortable-lang t3js-sortable-lang-${this.languageUid} t3-page-ce-wrapper">
-        ${unsafeHTML(this.innerHTML)}
+        <slot></slot>
       </div>
     `;
   }

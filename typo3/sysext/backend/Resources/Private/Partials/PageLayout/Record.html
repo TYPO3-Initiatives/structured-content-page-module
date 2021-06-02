@@ -17,6 +17,9 @@
 </f:section>
 
 <typo3-backend-content-element
+    header="{f:render(section: 'header', arguments: _all) -> f:format.json()}"
+    footer="{f:render(section: 'footer', arguments: _all) -> f:format.json()}"
+    content="{f:render(section: 'content', arguments: _all) -> f:format.json()}"
     wrapper-class-name="{item.wrapperClassName}"
     actions="[]"
     table="tt_content"
@@ -29,15 +32,6 @@
     {!item.disabled || item.context.drawingConfiguration.showHidden? 'show': ''}
     {item.versioned? 'versioned': ''}
 >
-    <div slot="header">
-        {f:render(section: 'header', arguments: _all)}
-    </div>
-    <div slot="content">
-        {f:render(section: 'content', arguments: _all)}
-    </div>
-    <div slot="footer">
-        {f:render(section: 'footer', arguments: _all)}
-    </div>
 </typo3-backend-content-element>
 
 <div class="t3-page-ce-dropzone-available t3js-page-ce-dropzone-available"></div>
