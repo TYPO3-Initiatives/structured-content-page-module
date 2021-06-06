@@ -52,6 +52,17 @@ $page-ce-dropzone-possible-border: $state-warning-border;
     background: #f5f5f5;
     border-right: 1px solid #c8c8c8;
     transition: width 0.5s;
+    overflow: auto;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.2);
+    }
 }
 
 .new-content-wizard-expanded .t3-grid-new-content-wizard {
@@ -107,12 +118,16 @@ $page-ce-dropzone-possible-border: $state-warning-border;
     transition: display 0.5s;
 }
 
-.new-content-wizard-expanded .nav-tabs,
-.new-content-wizard-expanded .nav-link {
+.new-content-wizard-expanded .nav-link,
+.t3js-new-content-wizard-bar-container .tab-content > .tab-pane {
     display: block;
 }
 
-.t3js-new-content-wizard-bar-container .nav-link.active {
+.t3js-new-content-wizard-bar-container strong {
+    font-weight: normal;
+}
+
+.t3js-new-content-wizard-bar-container .nav-link {
     font-weight: bold;
 }
 

@@ -31,6 +31,12 @@ class NewContentWizardSwitcher {
 	    //filter input minimize
 	    $('.t3js-new-content-wizard-bar-container .input-group-addon').remove();
 	    $('.t3js-new-content-wizard-bar-container .t3js-contentWizard-search').addClass('form-control-sm');
+	    
+	    //reorganize tabs for a vertical bar
+	    $('.t3js-new-content-wizard-bar-container .t3js-tabmenu-item a').each(function( index: number, element: HTMLElement ) {
+	      console.log( index + ': ' + $( element ).text() );
+	      $( '.t3js-new-content-wizard-bar-container .tab-content .tab-pane:nth-of-type(' + (index + 1) + ')' ).prepend($( element ).parent().html());
+	    });
     });
   }
 }
