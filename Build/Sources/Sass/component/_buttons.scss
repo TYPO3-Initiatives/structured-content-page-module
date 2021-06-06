@@ -52,10 +52,15 @@
 }
 
 .btn-fab {
-    border-radius: 1rem;
+    border-radius: 50%;
     border-color: #333;
     background-color: #fff;
-    font-size: 1.5rem;
+    padding: 1rem;
+
+    .icon {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 .btn-borderless {

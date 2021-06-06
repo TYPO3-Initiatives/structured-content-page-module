@@ -330,7 +330,7 @@ $page-ce-dropzone-possible-border: $state-warning-border;
         background: $page-ce-footer-bg;
     }
 
-    &:hover {
+    &:hover:not(.new-ce) {
         &:before {
             content: '';
             background: #929292;
@@ -436,6 +436,7 @@ $page-ce-dropzone-possible-border: $state-warning-border;
     border-radius: 50%;
     padding: 0.5rem;
     z-index: 1;
+    font-size: 24px;
 }
 
 .t3-page-ce-add-rowabove {
