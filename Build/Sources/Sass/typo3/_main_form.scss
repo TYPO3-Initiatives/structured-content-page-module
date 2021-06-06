@@ -500,6 +500,12 @@ textarea {
     min-width: 0;
 }
 
+.input-group > :not(:first-child) > input {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
 .form-control:not(.hidden) + .form-control-clearable {
     flex-grow: 0;
     width: auto;

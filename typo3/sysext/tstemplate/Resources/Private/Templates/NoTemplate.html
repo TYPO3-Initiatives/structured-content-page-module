@@ -29,11 +29,11 @@
             <input class="btn btn-primary text-light" type="submit" form="TypoScriptTemplateModuleController" name="newWebsite" value="{f:translate(key: 'newWebsiteAction', extensionName:'tstemplate')}" />
         </div>
         <div class="col">
-            <input class="btn btn-default" type="submit" form="TypoScriptTemplateModuleController" name="createExtension" value="{f:translate(key: 'extTemplateAction', extensionName:'tstemplate')}" />
+            <input class="btn btn-primary" type="submit" form="TypoScriptTemplateModuleController" name="createExtension" value="{f:translate(key: 'extTemplateAction', extensionName:'tstemplate')}" />
         </div>
         <f:if condition="{previousPage}">
             <div class="col">
-                <f:be.link route="web_ts" parameters="{id: previousPage.uid}" class="btn btn-default"><f:translate key="goToClosestAction" /></f:be.link>
+                <f:be.link route="web_ts" parameters="{id: previousPage.uid}" class="btn btn-primary"><f:translate key="goToClosestAction" /></f:be.link>
             </div>
         </f:if>
     </div>

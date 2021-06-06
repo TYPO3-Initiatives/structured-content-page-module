@@ -407,4 +407,8 @@ a.card:hover {
 //
 .card-footer {
     border-top: none;
+
+    .btn-default {
+        border-color: #ccc;
+    }
 }
