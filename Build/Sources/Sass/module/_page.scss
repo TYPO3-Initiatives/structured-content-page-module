@@ -30,6 +30,11 @@ $page-ce-dropzone-border: $state-success-border;
 $page-ce-dropzone-border-radius: $page-ce-border-radius;
 $page-ce-dropzone-possible-bg: $state-warning-bg;
 $page-ce-dropzone-possible-border: $state-warning-border;
+$page-grid-new-content-wizard-background: #f5f5f5;
+$page-grid-new-content-wizard-border: #bbb;
+$page-grid-new-content-wizard-width-expanded: 240px;
+$page-grid-new-content-wizard-width-collapsed: 70px;
+$page-grid-new-content-wizard-item-height: 35px;
 
 //
 // Grid
@@ -49,8 +54,8 @@ $page-ce-dropzone-possible-border: $state-warning-border;
     height: 100%;
     z-index: 300;
     padding-top: 4px;
-    background: #f5f5f5;
-    border-right: 1px solid #c8c8c8;
+    background: $page-grid-new-content-wizard-background;
+    border-right: 1px solid $page-grid-new-content-wizard-border;
     transition: width 0.5s;
     overflow: auto;
     scrollbar-width: thin;
@@ -66,16 +71,16 @@ $page-ce-dropzone-possible-border: $state-warning-border;
 }
 
 .new-content-wizard-expanded .t3-grid-new-content-wizard {
-    width: 240px;
+    width: $page-grid-new-content-wizard-width-expanded;
 }
 
 [data-module-name='web_layout'] {
-    padding-left: 70px;
+    padding-left: $page-grid-new-content-wizard-width-collapsed;
     transition: padding-left 0.5s;
 }
 
 .new-content-wizard-expanded[data-module-name='web_layout'] {
-    padding-left: 240px;
+    padding-left: $page-grid-new-content-wizard-width-expanded;
 }
 
 .t3js-new-content-wizard-switcher {
@@ -128,13 +133,44 @@ $page-ce-dropzone-possible-border: $state-warning-border;
 }
 
 .t3js-new-content-wizard-bar-container .nav-link {
-    font-weight: bold;
+    text-transform: uppercase;
+    margin: 1rem 0.25rem;
+    position: relative;
+
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        height: 0;
+        width: 6px;
+        border-top: 1px solid currentColor;
+        transition: transform 0.25s ease-in-out;
+    }
+
+    &:before {
+        transform: rotate(45deg);
+        right: 15px;
+    }
+
+    &:after {
+        transform: rotate(-45deg);
+        right: 11px;
+    }
+
+    &[aria-expanded*="true"]:before {
+        transform: rotate(-45deg);
+    }
+
+    &[aria-expanded*="true"]:after {
+        transform: rotate(45deg);
+    }
 }
 
 .t3js-new-content-wizard-bar-container .media-new-content-element-wizard {
     width: 100%;
     margin-bottom: 10px;
-    max-height: 35px;
+    max-height: $page-grid-new-content-wizard-item-height;
     overflow: hidden;
 }
 

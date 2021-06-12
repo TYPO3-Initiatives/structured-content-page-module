@@ -332,7 +332,7 @@ class BackendLayoutRenderer
             . ' data-bs-content="' . htmlspecialchars((string)$pasteItem) . '"'
             . ' data-title="' . htmlspecialchars($pasteTitle) . '"'
             . ' data-severity="warning"'
-            . ' class="t3js-paste t3js-paste' . htmlspecialchars($copyMode) . ' ' . htmlspecialchars($cssClass) . ' btn btn-default btn-sm"'
+            . ' class="t3js-paste t3js-paste' . htmlspecialchars($copyMode) . ' ' . htmlspecialchars($cssClass) . ' btn btn-default btn-fab"'
             . ' title="' . htmlspecialchars($this->getLanguageService()->getLL($title)) . '">'
             . $this->iconFactory->getIcon('actions-document-paste-into', Icon::SIZE_SMALL)->render()
             . '</button>'

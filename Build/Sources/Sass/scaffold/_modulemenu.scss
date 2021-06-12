@@ -40,14 +40,14 @@
     background-color: transparent;
     text-align: left;
 
-    &:not(:disabled):focus,
+    &:not(:disabled):focus-visible,
     &:not(:disabled):hover {
         color: inherit;
         text-decoration: none;
         outline: none;
     }
 
-    &:not(:disabled):focus,
+    &:not(:disabled):focus-visible,
     &:not(:disabled):hover,
     &.modulemenu-action-active {
         color: $scaffold-modulemenu-color-inverted;
@@ -60,7 +60,7 @@
         }
     }
 
-    &:not(:disabled):focus {
+    &:not(:disabled):focus-visible {
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
     }
 
@@ -84,11 +84,11 @@
     svg {
         filter: grayscale(100%);
 
-        path:first-child:not([fill^="#FFF"]) {
+        path:first-of-type:not([fill^="#FFF"]) {
             fill: transparent;
         }
 
-        rect:first-child:not([fill^="#FFF"]) {
+        rect:first-of-type:not([fill^="#FFF"]) {
             fill: transparent;
         }
 

@@ -77,27 +77,27 @@ export class ContentElement extends LitElement {
         data-language-uid="${this.languageUid}" style=${styleMap(styles)}
       >
 
-        <button class="btn btn-default btn-fab t3-page-ce-add t3-page-ce-add-rowabove" hidden
+        <button class="btn btn-default btn-fab t3-page-ce-add t3-page-ce-add-rowabove t3js-toggle-new-content-element-wizard" hidden
           @click="${(event: Event) => this._handleAddNewContent(event, CEPosition.RowAbove)}">
             <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>
-        <button class="btn btn-default btn-fab t3-page-ce-add t3-page-ce-add-above" ?hidden="${!this.isAddContentModeEnabled}"
+        <button class="btn btn-default btn-fab t3-page-ce-add t3-page-ce-add-above t3js-toggle-new-content-element-wizard" ?hidden="${!this.isAddContentModeEnabled}"
           @click="${(event: Event) => this._handleAddNewContent(event, CEPosition.Above)}">
           <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>
-        <button class="btn btn-default btn-fab t3-page-ce-add t3-page-ce-add-left" ?hidden="${!this.isAddContentModeEnabled}"
+        <button class="btn btn-default btn-fab t3-page-ce-add t3-page-ce-add-left t3js-toggle-new-content-element-wizard" ?hidden="${!this.isAddContentModeEnabled}"
           @click="${(event: Event) => this._handleAddNewContent(event, CEPosition.Left)}">
           <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>
-        <button class="btn btn-default btn-fab t3-page-ce-add t3-page-ce-add-right" ?hidden="${!this.isAddContentModeEnabled}"
+        <button class="btn btn-default btn-fab t3-page-ce-add t3-page-ce-add-right t3js-toggle-new-content-element-wizard" ?hidden="${!this.isAddContentModeEnabled}"
           @click="${(event: Event) => this._handleAddNewContent(event, CEPosition.Right)}">
           <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>
-        <button class="btn btn-default btn-fab t3-page-ce-add t3-page-ce-add-below" ?hidden="${!this.isAddContentModeEnabled}"
+        <button class="btn btn-default btn-fab t3-page-ce-add t3-page-ce-add-below t3js-toggle-new-content-element-wizard" ?hidden="${!this.isAddContentModeEnabled}"
           @click="${(event: Event) => this._handleAddNewContent(event, CEPosition.Below)}">
           <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>
-        <button class="btn btn-default btn-fab t3-page-ce-add t3-page-ce-add-rowbelow" hidden
+        <button class="btn btn-default btn-fab t3-page-ce-add t3-page-ce-add-rowbelow t3js-toggle-new-content-element-wizard" hidden
           @click="${(event: Event) => this._handleAddNewContent(event, CEPosition.RowAbove)}">
           <typo3-backend-icon identifier="actions-add"></typo3-backend-icon>
         </button>

@@ -32,10 +32,36 @@ class NewContentWizardSwitcher {
 	    $('.t3js-new-content-wizard-bar-container .input-group-addon').remove();
 	    $('.t3js-new-content-wizard-bar-container .t3js-contentWizard-search').addClass('form-control-sm');
 	    
-	    //reorganize tabs for a vertical bar
+	    //transform tabs to accordions
 	    $('.t3js-new-content-wizard-bar-container .t3js-tabmenu-item a').each(function( index: number, element: HTMLElement ) {
-	      console.log( index + ': ' + $( element ).text() );
-	      $( '.t3js-new-content-wizard-bar-container .tab-content .tab-pane:nth-of-type(' + (index + 1) + ')' ).prepend($( element ).parent().html());
+		    
+		    
+	      //change link attributes 
+	      $(element).attr('data-bs-toggle','collapse');
+	      $(element).attr('role','button');
+	      if(index === 0){
+	        $(element).attr('aria-expanded','true');
+	      }else{
+	        $(element).attr('aria-expanded','false');
+	      }
+		    
+
+	      
+	      //add accordion link before each content list
+	      $( '.t3js-new-content-wizard-bar-container .tab-content .tab-pane:nth-of-type(' + (index + 1) + ')' ).before($( element ).parent().html());
+		    
+	     //change content list class
+	      if(index === 0){
+	        $( '.t3js-new-content-wizard-bar-container .tab-content .tab-pane:nth-of-type(' + (index + 1) + ')' ).attr('class','collapse show');
+	      }else{
+	        $( '.t3js-new-content-wizard-bar-container .tab-content .tab-pane:nth-of-type(' + (index + 1) + ')' ).attr('class','collapse');
+	      }
+	      
+	    });
+	    
+	    //make all content type draggable
+	    $('.t3js-new-content-wizard-bar-container .t3js-media-new-content-element-wizard').each(function( index: number, element: HTMLElement ) {
+	      $( element ).wrap( '<div class="t3js-page-ce"></div>' ).wrap( '<div class="t3-page-ce-dragitem"></div>' ).wrap( '<div class="t3-page-ce-header-draggable t3js-page-ce-draghandle ui-draggable-handle"></div>' );
 	    });
     });
   }

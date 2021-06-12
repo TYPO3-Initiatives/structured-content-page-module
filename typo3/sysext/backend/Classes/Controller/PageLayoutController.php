@@ -631,8 +631,8 @@ class PageLayoutController
         $this->pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/ContextMenu');
         $this->pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/Tooltip');
         $this->pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/Localization');
-        $this->pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/LayoutModule/NewContentWizardSwitcher');
         $this->pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/LayoutModule/DragDrop');
+        $this->pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/LayoutModule/NewContentWizardSwitcher');
         $this->pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/Modal');
         $this->pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/LayoutModule/Paste');
         $this->pageRenderer->addInlineLanguageLabelFile('EXT:backend/Resources/Private/Language/locallang_layout.xlf');
