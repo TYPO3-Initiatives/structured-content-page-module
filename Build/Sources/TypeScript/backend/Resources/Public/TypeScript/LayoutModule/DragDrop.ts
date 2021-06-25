@@ -38,6 +38,8 @@ interface DroppableEventUIParam {
 class DragDrop {
 
   private static readonly contentIdentifier: string = '.t3js-page-ce';
+  private static readonly existingContentIdentifier: string = '.t3-grid-container .t3js-page-ce';
+  private static readonly newContentIdentifier: string = '.t3js-new-content-wizard-bar-container .t3js-page-ce';
   private static readonly dragIdentifier: string = '.t3-page-ce-dragitem';
   private static readonly dragHeaderIdentifier: string = '.t3js-page-ce-draghandle';
   private static readonly dropZoneIdentifier: string = '.t3js-page-ce-dropzone-available';
@@ -46,12 +48,14 @@ class DragDrop {
   private static readonly dropPossibleHoverClass: string = 't3-page-ce-dropzone-possible';
   private static readonly addContentIdentifier: string = '.t3js-page-new-ce';
   private static originalStyles: string = '';
+  private static newContentElementDefaultValues: any = {};
 
   /**
    * initializes Drag+Drop for all content elements on the page
    */
   public static initialize(): void {
-    $(DragDrop.contentIdentifier).draggable({
+    // make the page contents draggable
+    $(DragDrop.existingContentIdentifier).draggable({
       handle: DragDrop.dragHeaderIdentifier,
       scope: 'tt_content',
       cursor: 'move',
@@ -60,6 +64,27 @@ class DragDrop {
       // addClasses: 'active-drag',
       revert: 'invalid',
       zIndex: 100,
+      //helper: 'clone',
+      start: (evt: JQueryEventObject): void => {
+        DragDrop.onDragStart($(evt.target));
+      },
+      stop: (evt: JQueryEventObject): void => {
+        DragDrop.onDragStop($(evt.target));
+      },
+    });
+    
+    // the new contents from the wizard bar are draggable too and cloned
+    $(DragDrop.newContentIdentifier).draggable({
+      handle: DragDrop.dragHeaderIdentifier,
+      scope: 'tt_content',
+      cursor: 'move',
+      distance: 20,
+      // removed because of incompatible types:
+      // addClasses: 'active-drag',
+      revert: 'invalid',
+      zIndex: 400,
+      helper: 'clone',
+      appendTo: '.module-body',
       start: (evt: JQueryEventObject): void => {
         DragDrop.onDragStart($(evt.target));
       },
@@ -93,7 +118,27 @@ class DragDrop {
     // Add css class for the drag shadow
     DragDrop.originalStyles = $element.get(0).style.cssText;
     $element.children(DragDrop.dragIdentifier).addClass('dragitem-shadow');
-    $element.append('<div class="ui-draggable-copy-message">' + TYPO3.lang['dragdrop.copy.message'] + '</div>');
+    
+    // get CType if it's a new record
+    if($element.data('uid') === 'NEW'){
+
+      // all information about CType, list_type and other default values has to be fetched from onclick
+      const newContentElementOnclickAttr = $element.find('a:first').attr('onclick');
+      if(typeof newContentElementOnclickAttr !== 'undefined'){
+        const newContentElementOnclick = unescape(newContentElementOnclickAttr.split('document.editForm.defValues.value=unescape(\'%26')[1].split('\');')[0]);
+        if (newContentElementOnclick.length) {
+          console.log(newContentElementOnclick);
+          DragDrop.newContentElementDefaultValues = $.parseJSON(
+            '{' + newContentElementOnclick.replace(/\&/g, '",').replace(/defVals\[tt_content\]\[/g, '"').replace(/\]\=/g, '":"') + '"}'
+          );
+        }
+      }
+    // Append copy message only for moving existing contents
+    }else{
+      $element.append('<div class="ui-draggable-copy-message">' + TYPO3.lang['dragdrop.copy.message'] + '</div>');
+    }
+
+    
     // Hide create new element button
     $element.children(DragDrop.dropZoneIdentifier).addClass('drag-start');
     $element.closest(DragDrop.columnIdentifier).removeClass('active');
@@ -174,7 +219,7 @@ class DragDrop {
     // send an AJAX request via the AjaxDataHandler
     const contentElementUid: number = parseInt($draggableElement.data('uid'), 10);
 
-    if (typeof(contentElementUid) === 'number' && contentElementUid > 0) {
+    if ($draggableElement.data('uid') !== '') {
       let parameters: Parameters = {};
       // add the information about a possible column position change
       const targetFound = $droppableElement.closest(DragDrop.contentIdentifier).data('uid');
@@ -201,23 +246,41 @@ class DragDrop {
         colPos = newColumn;
       }
       const isCopyAction = (evt && (<JQueryInputEventObject>evt.originalEvent).ctrlKey || $droppableElement.hasClass('t3js-paste-copy'));
+      let isInsertAction = false;
       const datahandlerCommand = isCopyAction ? 'copy' : 'move';
-      parameters.cmd = {
-        tt_content: {
-          [contentElementUid]: {
-            [datahandlerCommand]: {
-              action: 'paste',
-              target: targetPid,
-              update: {
-                colPos: colPos,
-                sys_language_uid: language,
-              },
+      console.log(DragDrop.newContentElementDefaultValues.CType);
+      if($draggableElement.data('uid') === 'NEW'){
+        isInsertAction = true;
+        parameters.data = {
+          tt_content: {
+            NEW234134: {
+              CType: DragDrop.newContentElementDefaultValues.CType,
+              list_type: DragDrop.newContentElementDefaultValues.list_type,
+              pid: targetPid,
+              colPos: colPos,
+	      sys_language_uid: language,
             }
           }
-        }
-      };
+        };   
+      }else{
+        parameters.cmd = {
+          tt_content: {
+            [contentElementUid]: {
+              [datahandlerCommand]: {
+                action: 'paste',
+                target: targetPid,
+                update: {
+                  colPos: colPos,
+                  sys_language_uid: language,
+                },
+              }
+            }
+          }
+        };   
+      }
+      console.log(parameters);
 
-      DragDrop.ajaxAction($droppableElement, $draggableElement, parameters, isCopyAction).then((): void => {
+      DragDrop.ajaxAction($droppableElement, $draggableElement, parameters, isCopyAction, isInsertAction).then((): void => {
         const $languageDescriber = $(`.t3-page-column-lang-name[data-language-uid="${language}"]`);
         if ($languageDescriber.length === 0) {
           return;
@@ -245,7 +308,7 @@ class DragDrop {
    * @param {boolean} isCopyAction
    * @private
    */
-  public static ajaxAction($droppableElement: JQuery, $draggableElement: JQuery, parameters: Parameters, isCopyAction: boolean): Promise<any> {
+  public static ajaxAction($droppableElement: JQuery, $draggableElement: JQuery, parameters: Parameters, isCopyAction: boolean, isInsertAction: boolean): Promise<any> {
     return DataHandler.process(parameters).then((result: ResponseInterface): void => {
       if (result.hasErrors) {
         throw result.messages;
@@ -259,7 +322,7 @@ class DragDrop {
         $draggableElement.detach().css({top: 0, left: 0})
           .insertAfter($droppableElement.closest(DragDrop.contentIdentifier));
       }
-      if (isCopyAction) {
+      if (isCopyAction || isInsertAction) {
         self.location.reload();
       }
     });
