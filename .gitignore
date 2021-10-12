@@ -1,0 +1,5 @@
+/.idea
+
+/composer.lock
+/.typo3
+/typo3_src
