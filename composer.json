@@ -22,7 +22,11 @@
             "web-dir": ".typo3/public",
             "app-dir": ".typo3"
         },
-        "patches-file": "patches/composer.patches.json"
+        "patches": {
+            "typo3/cms-backend": {
+                "TYPO3 UX: Page Module Pilot": "patches/typo3-cms-backend-70062.patch"
+            }
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

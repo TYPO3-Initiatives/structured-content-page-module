@@ -1,7 +1,0 @@
-{
-  "patches": {
-    "typo3/cms-backend": {
-      "TYPO3 UX: Page Module Pilot": "patches/typo3-cms-backend-70062.patch"
-    }
-  }
-}
