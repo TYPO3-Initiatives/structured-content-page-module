@@ -2,6 +2,6 @@
 
 So far this package does nothing (useful).
 
-# Build
+# How to
 
-`yarn build` or `yarn build-css` or `yarn build-js`
+`composer config extra.enable-patching true`
