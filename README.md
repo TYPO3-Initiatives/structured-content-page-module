@@ -6,9 +6,23 @@ todo:
 
 # How to
 
-In your composer-installed TYPO3 v11.5.x:
+## In your composer-installed TYPO3 v11.5.x:
 
 ```shell
 composer config extra.enable-patching true
-composer req typo3-ux/page-module-pilot
+composer require typo3-ux/page-module-pilot
+```
+
+## Or spin up a new ddev instance:
+
+```shell
+mkdir my-typo3-site
+cd my-typo3-site
+ddev config --project-type=typo3 --docroot=public --create-docroot
+ddev start
+ddev composer create "typo3/cms-base-distribution:^11"
+ddev composer config extra.enable-patching true
+ddev composer require typo3-ux/page-module-pilot
+ddev exec touch public/FIRST_INSTALL
+ddev launch
 ```
