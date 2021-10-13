@@ -23,6 +23,13 @@ ddev start
 ddev composer create "typo3/cms-base-distribution:^11"
 ddev composer config extra.enable-patching true
 ddev composer require typo3-ux/page-module-pilot
+
+# todo: composer-patch does not get active here. Workaround:
+rm -rf public/typo3/sysext/backend
+ddev composer install
+# /todo
+
 ddev exec touch public/FIRST_INSTALL
 ddev launch
 ```
+
