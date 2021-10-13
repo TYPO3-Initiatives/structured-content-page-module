@@ -2,7 +2,14 @@
 
 todo:
 * package description in composer.json
-* show here what it does (screenshots are in Documentation/Images)
+
+![content boxes](Documentation/Images/content-boxes.JPG)
+
+![delete action](Documentation/Images/delete-action.JPG)
+
+![more button](Documentation/Images/more-button.JPG)
+
+![new boxes](Documentation/Images/new-buttons.JPG)
 
 # How to
 
