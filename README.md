@@ -21,6 +21,8 @@ composer require typo3-ux/page-module-pilot
 
 ## Or spin up a new ddev instance:
 
+Please update your ddev before you continue. (You need composer v2.1+ and up-to-date nginx config to run TYPO3v11) 
+
 ```shell
 mkdir my-typo3-site
 cd my-typo3-site
