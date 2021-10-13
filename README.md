@@ -1,7 +1,6 @@
 # Work in Progress
 
-todo:
-* package description in composer.json
+...
 
 ![content boxes](Documentation/Images/content-boxes.JPG)
 

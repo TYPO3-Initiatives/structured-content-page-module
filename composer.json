@@ -1,6 +1,6 @@
 {
     "name": "typo3-ux/page-module-pilot",
-    "description": "...",
+    "description": "A showcase for UX changes to the TYPO3 page module",
     "keywords": [
         "typo3",
         "ux"
