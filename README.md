@@ -17,6 +17,8 @@
 ```shell
 composer config extra.enable-patching true
 composer require typo3-ux/page-module-pilot
+# make sure composer-patches can do its stuff
+composer update --lock
 ```
 
 ## Or spin up a new ddev instance:
