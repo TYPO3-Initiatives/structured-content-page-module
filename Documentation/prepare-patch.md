@@ -23,11 +23,11 @@
 
 # Release new version of this package
 
-After committing, tag a release:
+Update the URL `https://raw.githubusercontent.com/TYPO3-Initiatives/structured-content-page-module/v0.1.4/patches/typo3-cms-backend-71965.patch` in `composer.json` with the new version (`vx.x.x`) you are about to release (Notice: the external URL instead of just `./patches/...` is necessary because of a problem for patches supplied by non-root composer packages https://github.com/cweagans/composer-patches/issues/292)
 
-    # list tags
-    git tag
+After committing that, tag a release:
 
+    # add a new release tag
     git tag v0.5.6
 
 Push the tags
