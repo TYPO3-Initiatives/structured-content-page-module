@@ -39,3 +39,11 @@ ddev exec touch public/FIRST_INSTALL
 ddev launch
 ```
 
+## Remove the Patch in your composer-installed TYPO3 v11.5.x:
+
+```shell
+composer remove typo3-ux/page-module-pilot
+composer config --unset extra.enable-patching
+rm -rf public/typo3/ && composer install
+```
+
