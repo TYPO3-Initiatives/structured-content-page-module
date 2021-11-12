@@ -43,7 +43,7 @@ ddev launch
 
 ```shell
 composer remove typo3-ux/page-module-pilot
-composer config extra.enable-patching false
+composer config --unset extra.enable-patching
 rm -rf public/typo3/ && composer install
 ```
 
