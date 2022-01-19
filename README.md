@@ -15,6 +15,7 @@
 ## In your composer-installed TYPO3 v11.5.x:
 
 ```shell
+composer config allow-plugins.cweagans/composer-patches true
 composer config extra.enable-patching true
 composer require typo3-ux/page-module-pilot
 # make sure composer-patches can do its stuff
@@ -31,6 +32,7 @@ cd my-typo3-site
 ddev config --project-type=typo3 --docroot=public --create-docroot
 ddev start
 ddev composer create "typo3/cms-base-distribution:^11"
+ddev composer config allow-plugins.cweagans/composer-patches true
 ddev composer config extra.enable-patching true
 ddev composer require typo3-ux/page-module-pilot
 # make sure composer-patches can do its stuff
