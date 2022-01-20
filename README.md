@@ -12,7 +12,9 @@
 
 # How to
 
-## In your composer-installed TYPO3 v11.5.x:
+## Installation
+
+### 1. Option use composer package in your composer-installed TYPO3 v11.5.x:
 
 ```shell
 composer config allow-plugins.cweagans/composer-patches true
@@ -22,9 +24,9 @@ composer require typo3-ux/page-module-pilot
 composer update --lock
 ```
 
-## Or spin up a new ddev instance:
+### 2. Option spin up a new ddev instance:
 
-Please update your ddev before you continue. (You need composer v2.1+ and up-to-date nginx config to run TYPO3v11) 
+Please update your ddev before you continue. (You need composer v2.1+ and up-to-date nginx config to run TYPO3v11)
 
 ```shell
 mkdir my-typo3-site
@@ -41,7 +43,22 @@ ddev exec touch public/FIRST_INSTALL
 ddev launch
 ```
 
-## Remove the Patch in your composer-installed TYPO3 v11.5.x:
+### 3. Option use the new TYPO3 Core Patches extension:
+
+Follow the installation guide https://github.com/GsTYPO3/core-patches/blob/main/README.md#installation
+then
+TYPO3 v11.5.x Projects
+```shell
+composer typo3:patch:apply 73100
+```
+TYPO3 v12.x Projects
+```shell
+composer typo3:patch:apply 71965
+```
+
+## Remove Patch
+
+### in your composer-installed TYPO3 v11.5.x:
 
 ```shell
 composer remove typo3-ux/page-module-pilot
@@ -49,3 +66,11 @@ composer config --unset extra.enable-patching
 rm -rf public/typo3/ && composer install
 ```
 
+### with core patches extension
+```shell
+composer typo3:patch:remove 73100
+```
+for TYPO3 v12.x Projects
+```shell
+composer typo3:patch:remove 71965
+```
