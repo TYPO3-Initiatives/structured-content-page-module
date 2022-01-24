@@ -16,8 +16,6 @@
 
 ### create .patch file
 
-#### would be correct if we based the patch on a released TYPO3 version...
-
     git diff v11.5.5..FETCH_HEAD -- typo3/sysext/backend > ../patches/typo3-cms-backend-73100.patch
 
 
@@ -37,8 +35,6 @@
 
 
 ### create .patch file
-
-#### would be correct if we based the patch on a released TYPO3 version...
 
     git diff v12.0.0..FETCH_HEAD -- typo3/sysext/backend > ../patches/typo3-cms-backend-71965.patch
 
