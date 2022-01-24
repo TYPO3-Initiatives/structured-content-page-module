@@ -26,7 +26,7 @@ composer update --lock
 
 ### 2. Option spin up a new ddev instance:
 
-Please update your ddev before you continue. (You need composer v2.1+ and up-to-date nginx config to run TYPO3v11)
+Please update your ddev before you continue. (You need composer v2.2+ and up-to-date nginx config to run TYPO3v11)
 
 ```shell
 mkdir my-typo3-site
