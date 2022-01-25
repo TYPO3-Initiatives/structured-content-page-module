@@ -1,14 +1,20 @@
 # Work in Progress
 
-...
+Find more information about this pilot https://typo3.org/article/structured-content-initiative-feedback-wanted
+
+# Screenshots
 
 ![content boxes](Documentation/Images/content-boxes.JPG)
+Before and after comparison backend display of a content element
 
 ![delete action](Documentation/Images/delete-action.JPG)
+The Delete button has been moved to the DropDown selection
 
 ![more button](Documentation/Images/more-button.JPG)
+New position DropDown Menu
 
 ![new boxes](Documentation/Images/new-buttons.JPG)
+New look for add content buttons
 
 # How to
 
