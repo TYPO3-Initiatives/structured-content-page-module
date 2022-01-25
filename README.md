@@ -14,17 +14,7 @@
 
 ## Installation
 
-### 1. Option use composer package in your composer-installed TYPO3 v11.5.x:
-
-```shell
-composer config allow-plugins.cweagans/composer-patches true
-composer config extra.enable-patching true
-composer require typo3-ux/page-module-pilot
-# make sure composer-patches can do its stuff
-composer update --lock
-```
-
-### 2. Option spin up a new ddev instance:
+### If you want to test the patch locally, use the following ddev option
 
 Please update your ddev before you continue. (You need composer v2.2+ and up-to-date nginx config to run TYPO3v11)
 
@@ -43,10 +33,22 @@ ddev exec touch public/FIRST_INSTALL
 ddev launch
 ```
 
-### 3. Option use the new TYPO3 Core Patches extension:
+### If you want to use the patch, you have two options
+
+1. Option use composer package in your composer-installed TYPO3 v11.5.x
+
+```shell
+composer config allow-plugins.cweagans/composer-patches true
+composer config extra.enable-patching true
+composer require typo3-ux/page-module-pilot
+# make sure composer-patches can do its stuff
+composer update --lock
+```
+
+2. Option use the new TYPO3 Core Patches extension 
 
 Follow the installation guide https://github.com/GsTYPO3/core-patches/blob/main/README.md#installation
-then
+
 TYPO3 v11.5.x Projects
 ```shell
 composer typo3:patch:apply 73100
@@ -58,7 +60,7 @@ composer typo3:patch:apply 71965
 
 ## Remove Patch
 
-### in your composer-installed TYPO3 v11.5.x:
+### 1. in your composer-installed TYPO3 v11.5.x:
 
 ```shell
 composer remove typo3-ux/page-module-pilot
@@ -66,11 +68,13 @@ composer config --unset extra.enable-patching
 rm -rf public/typo3/ && composer install
 ```
 
-### with core patches extension
+### 2. with core patches extension
+
+TYPO3 v11.5.x Projects
 ```shell
 composer typo3:patch:remove 73100
 ```
-for TYPO3 v12.x Projects
+TYPO3 v12.x Projects
 ```shell
 composer typo3:patch:remove 71965
 ```
