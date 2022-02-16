@@ -10,13 +10,14 @@
 
     git checkout 11.5
     git reset --hard origin/11.5
+    git fetch --tags
 
     curl 'https://review.typo3.org/changes/73100?o=DOWNLOAD_COMMANDS&o=CURRENT_REVISION' | tail -n+2 | jq -r '.revisions[.current_revision].fetch["anonymous http"].commands.Checkout' | bash -
 
 
 ### create .patch file
 
-    git diff v11.5.5..FETCH_HEAD -- typo3/sysext/backend > ../patches/typo3-cms-backend-73100.patch
+    git diff v11.5.6..FETCH_HEAD -- typo3/sysext/backend ':!typo3/sysext/backend/Tests/' > ../patches/typo3-cms-backend-73100.patch
 
 
 
