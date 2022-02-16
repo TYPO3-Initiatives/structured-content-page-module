@@ -29,7 +29,7 @@
         },
         "patches": {
             "typo3/cms-backend": {
-                "TYPO3 UX: Page Module Pilot": "https://raw.githubusercontent.com/TYPO3-Initiatives/structured-content-page-module/v0.2.0/patches/typo3-cms-backend-73100.patch"
+                "TYPO3 UX: Page Module Pilot": "https://raw.githubusercontent.com/TYPO3-Initiatives/structured-content-page-module/v0.2.2/patches/typo3-cms-backend-73100.patch"
             }
         }
     },
